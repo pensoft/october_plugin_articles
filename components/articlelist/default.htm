@@ -8,7 +8,7 @@
             content=item.content_limit
             url=__SELF__.getUrl(item, this.page.id)
             image=item.cover.getThumb(280, 181, {'mode': 'crop'})
-            published_at=item.published_at
+            published_at=item.pretty_published_at
             allow_share=item.allow_share
         %}
     {% endfor %}

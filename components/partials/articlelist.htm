@@ -14,7 +14,7 @@
             {% endif %}
         </div>
         <div class="text-published">{{published_at}}</div>
-        <div class="body">{{content}}</div>
+        <div class="body">{{content|raw}}</div>
     </div>
     <script>
         createTippy('#share-{{slug}}', { content: '<div class="icons">{% if this.theme.facebook %}<a class="fb-xfbml-parse-ignore pr p-facebook" href="https://www.facebook.com/sharer/sharer.php?u={{url}}&amp;src=sdkpreparse" target="_blank" ></a>{% endif %}{% if this.theme.twitter %}<a class="pr p-twitter" href="https://twitter.com/intent/tweet?text={{title_encoded}}{{url}}" target="_blank"></a>{% endif %}{% if this.theme.linkedin %}<a class="fb-xfbml-parse-ignore pr p-linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url={{url}}" target="_blank" ></a>{% endif %}</div>'})

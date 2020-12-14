@@ -56,6 +56,10 @@ class Article extends Model
 
     public function getPublishedAtAttribute($value)
     {
+        return $value;
+    }
+    public function getPrettyPublishedAtAttribute($value)
+    {
         $date = new Carbon($value);
         return $date->day . ' ' . $date->englishMonth . ' ' . $date->year;
     }

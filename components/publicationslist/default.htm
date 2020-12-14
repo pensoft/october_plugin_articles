@@ -7,7 +7,7 @@
 			title_encoded=item.title_encoded
 			content=item.content_limit
 			url=__SELF__.getUrl(item)
-			published_at=item.published_at
+			published_at=item.pretty_published_at
 			allow_share=item.allow_share
 		%}
 	{% endfor %}
