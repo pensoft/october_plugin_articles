@@ -1,0 +1,37 @@
+<div class="container highlights-news">
+	<div class="row">
+		<div class="col-xs-12">
+			<h1 class="base_heading">{{title}}</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<div id="card-carousel" class="card-carousel">
+				{% for highlight in highlights %}
+
+					<div class="card horizontal mx-1 card-link card-new-item">
+						{% if highlight.href %}
+						<a href="{{highlight.href}}">
+						{% endif %}
+						{% if highlight.cover %}
+							<img class="card-img-top" src="{{ highlight.cover|crop_image|resize(338, 218, {'mode': 'crop'}) }}">
+						{% endif %}
+						{% if highlight.content or highlight.title %}
+						<div class="card-body">
+							{% if highlight.title %}
+								<h3 class="card-title">{{highlight.title}}</h3>
+							{% endif %}
+							{{highlight.content|raw}}
+						</div>
+						{% endif %}
+
+						{% if highlight.href %}
+						</a>
+						{%endif %}
+					</div>
+				
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>

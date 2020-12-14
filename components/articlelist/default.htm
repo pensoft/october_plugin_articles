@@ -1,0 +1,15 @@
+
+<div class="news">
+    {% for item in __SELF__.getArticles() %}
+        {% partial "@articlelist.htm"
+            slug=item.slug
+            title=item.title
+			title_encoded=item.title_encoded
+            content=item.content_limit
+            url=__SELF__.getUrl(item, this.page.id)
+            image=item.cover.getThumb(280, 181, {'mode': 'crop'})
+            published_at=item.published_at
+            allow_share=item.allow_share
+        %}
+    {% endfor %}
+</div>

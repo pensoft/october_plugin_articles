@@ -1,0 +1,6 @@
+{% if not __SELF__.isEmpty() %}
+    {% partial "@articlehighlights.htm" 
+        title=__SELF__.getTitle()
+        highlights=__SELF__.getHighlights()
+    %}
+{% endif %}

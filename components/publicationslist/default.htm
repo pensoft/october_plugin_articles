@@ -1,0 +1,14 @@
+
+<div class="news">
+	{% for item in __SELF__.getPublications() %}
+		{% partial "@publications.htm"
+			slug=item.slug
+			title=item.title
+			title_encoded=item.title_encoded
+			content=item.content_limit
+			url=__SELF__.getUrl(item)
+			published_at=item.published_at
+			allow_share=item.allow_share
+		%}
+	{% endfor %}
+</div>
