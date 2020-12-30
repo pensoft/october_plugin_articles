@@ -14,6 +14,7 @@ class ArticleList extends ComponentBase
      */
     public function onRun()
     {
+        $this->addJs('assets/js/def.js');
         $this->page['card_horizontal'] = true;
         $this->page['border'] = $this->page['border'] ?: true;
         $this->page['image_position'] = $this->page['image_position'] ?: "card-img-top";

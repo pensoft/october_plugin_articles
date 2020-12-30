@@ -7,6 +7,16 @@ use Pensoft\Articles\Models\Article;
 
 class ArticleHighlights extends ComponentBase
 {
+    /**
+     * Executed when this component is bound to a page or layout, part of
+     * the page life cycle.
+     */
+    public function onRun()
+    {
+        $this->addJs('assets/js/slick.min.js');
+        $this->addJs('assets/js/def.js');
+    }
+
     public function componentDetails()
     {
         return [
