@@ -12,7 +12,6 @@ use Model;
 class Article extends Model
 {
     use \October\Rain\Database\Traits\Validation;
-
     const TYPE_NEWS = 1;
     const TYPE_PUBLICATIONS = 2;
     /**
