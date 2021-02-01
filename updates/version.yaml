@@ -3,3 +3,7 @@
 1.0.2:
     - 'Created table pensoft_articles_article'
     - builder_table_create_pensoft_articles_article.php
+1.0.3:
+    - 'Update table pensoft_articles_article'
+    - update_table_pensoft_articles_article.php
+

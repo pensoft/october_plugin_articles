@@ -39,9 +39,22 @@ class ArticleList extends ComponentBase
                 'title' => 'Max items',
                 'description' => 'Max items allowed',
                 'default' => 10,
-            ]
+            ],
+			'templates' => [
+				'title' => 'Select templates',
+				'type' => 'dropdown',
+				'default' => 'template1'
+			],
         ];
     }
+
+	public function getTemplatesOptions()
+	{
+		return [
+			'template1' => 'Template 1',
+			'template2' => 'Template 2',
+		];
+	}
 
     public function getContent($value)
     {

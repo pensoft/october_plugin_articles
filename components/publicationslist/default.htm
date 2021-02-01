@@ -1,7 +1,7 @@
 
 <div class="news">
 	{% for item in __SELF__.getPublications() %}
-		{% partial "@publications.htm"
+		{% partial __SELF__ ~ "::templates/" ~ __SELF__.property('templates')
 			slug=item.slug
 			title=item.title
 			title_encoded=item.title_encoded
@@ -9,6 +9,7 @@
 			url=__SELF__.getUrl(item)
 			published_at=item.pretty_published_at
 			allow_share=item.allow_share
+			url=item.url
 		%}
 	{% endfor %}
 </div>
