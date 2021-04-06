@@ -4,4 +4,7 @@
     - 'Created table pensoft_articles_article'
     - builder_table_create_pensoft_articles_article.php
 1.0.3:
-    - 'articles list pagination'
+    - 'Update table pensoft_articles_article'
+    - update_table_pensoft_articles_article.php
+1.0.4:
+    - 'Added Pagination to articles list'

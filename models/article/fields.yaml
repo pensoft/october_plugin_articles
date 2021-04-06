@@ -52,3 +52,7 @@ fields:
         showSearch: true
         span: auto
         type: dropdown
+    url:
+        label: URL
+        span: left
+        type: text

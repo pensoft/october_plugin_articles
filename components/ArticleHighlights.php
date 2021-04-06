@@ -41,9 +41,22 @@ class ArticleHighlights extends ComponentBase
             'baseUrl' => [
                 'title' => 'Base url',
                 'default' => '/news',
-            ]
+            ],
+			'templates' => [
+				'title' => 'Select templates',
+				'type' => 'dropdown',
+				'default' => 'template1'
+			],
         ];
     }
+
+	public function getTemplatesOptions()
+	{
+		return [
+			'template1' => 'Template 1',
+			'template2' => 'Template 2',
+		];
+	}
 
     private function getBaseUrl($slug = null)
     {

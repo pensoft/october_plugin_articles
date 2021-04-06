@@ -1,13 +1,13 @@
 
-<div class="news">
+<div class="news row between-md">
     {% for item in __SELF__.getArticles() %}
-        {% partial "@articlelist.htm"
+		{% partial __SELF__ ~ "::templates/" ~ __SELF__.property('templates')
             slug=item.slug
             title=item.title
 			title_encoded=item.title_encoded
             content=item.content_limit
             url=__SELF__.getUrl(item, this.page.id)
-            image=item.cover.getThumb(280, 181, {'mode': 'crop'})
+            image=item.cover
             published_at=item.pretty_published_at
             allow_share=item.allow_share
         %}
