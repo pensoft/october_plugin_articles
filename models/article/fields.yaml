@@ -11,8 +11,8 @@ fields:
             type: slug
         type: text
     content:
-        label: Body
-        size: giant
+        label: 'pensoft.articles::lang.plugin.description'
+        size: large
         span: left
         type: richeditor
     published_at:

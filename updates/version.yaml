@@ -6,4 +6,7 @@
 1.0.3:
     - 'Update table pensoft_articles_article'
     - update_table_pensoft_articles_article.php
-
+1.0.4:
+    - 'Added Pagination to articles list'
+1.0.5:
+    - 'Added new component template and related articles component'

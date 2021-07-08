@@ -15,6 +15,7 @@ class ArticleList extends ComponentBase
     public function onRun()
     {
         $this->addJs('assets/js/def.js');
+        $this->addCss('assets/css/pagination.css');
         $this->page['card_horizontal'] = true;
         $this->page['border'] = $this->page['border'] ?: true;
         $this->page['image_position'] = $this->page['image_position'] ?: "card-img-top";
@@ -53,6 +54,7 @@ class ArticleList extends ComponentBase
 		return [
 			'template1' => 'Template 1',
 			'template2' => 'Template 2',
+			'template3' => 'Template 3',
 		];
 	}
 
@@ -76,7 +78,8 @@ class ArticleList extends ComponentBase
     {
         $news = Article::news()->descPublished();
         if ($this->property('maxItems') > 0) {
-            return $news->take($this->property('maxItems'))->get();
+//            return $news->take($this->property('maxItems'))->get();
+            return $news->paginate($this->property('maxItems'), ['*'], 'p');
         }
         return $news->get();
     }

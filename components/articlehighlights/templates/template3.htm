@@ -1,0 +1,32 @@
+<div class="container highlights-news">
+	<div class="row">
+		<div class="col-xs-12">
+			<h1 class="base_heading highlight_new_template_3">{{title}}</h1>
+		</div>
+	</div>
+	<div class="row newslist">
+		<div class="col-xs-12">
+				{% for highlight in highlights %}
+				<div class="horizontal">
+					{% if highlight.href %}
+						<a href="{{highlight.href}}">
+					{% endif %}
+						<div class="text-published">{{highlight.pretty_published_at}}</div>
+
+
+						{% if highlight.title %}
+							<h3 class="card-title">{{highlight.title}}</h3>
+						{% endif %}
+						{% if highlight.href %}
+							<div class="read_more">read more</div>
+						{%endif %}
+
+					{% if highlight.href %}
+						</a>
+					{%endif %}
+				</div>
+
+				{% endfor %}
+		</div>
+	</div>
+</div>

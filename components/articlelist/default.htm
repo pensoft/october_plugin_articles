@@ -1,5 +1,5 @@
 
-<div class="news row between-md">
+<div class="newslist row">
     {% for item in __SELF__.getArticles() %}
 		{% partial __SELF__ ~ "::templates/" ~ __SELF__.property('templates')
             slug=item.slug
@@ -12,4 +12,6 @@
             allow_share=item.allow_share
         %}
     {% endfor %}
+
+	{{ __SELF__.getArticles().render|raw }}
 </div>
