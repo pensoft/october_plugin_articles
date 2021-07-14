@@ -10,6 +10,8 @@
             image=item.cover
             published_at=item.pretty_published_at
             allow_share=item.allow_share
+            width=__SELF__.property('thumb_width')
+            height=__SELF__.property('thumb_height')
         %}
     {% endfor %}
 

@@ -2,7 +2,11 @@
 	<div class="row news_column">
 		{% if image %}
 		<a class="news-image col-xs-12 center-xs" href="{{url}}">
-			<img class="news-img-top" src="{{image.getThumb(250, 250, {'mode': 'crop'})}}">
+			<img class="news-img-top" src="{{image.getThumb(width, height, {'mode': 'crop'})}}">
+		</a>
+		{% else %}
+		<a class="news-image col-xs-12 center-xs" href="{{url}}">
+			<img class="news-img-top" src="{{'pensoft/No_Image_Available.jpg'|media }}" style="height: {{height}}px; width: {{width}}px;">
 		</a>
 		{% endif %}
 		<div class="news-container col-xs-12">
