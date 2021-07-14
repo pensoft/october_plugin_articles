@@ -2,5 +2,7 @@
 	{% partial __SELF__ ~ "::templates/" ~ __SELF__.property('templates')
 		title=__SELF__.getTitle()
 		highlights=__SELF__.getHighlights()
+		width=__SELF__.property('thumb_width')
+		height=__SELF__.property('thumb_height')
 	%}
 {% endif %}

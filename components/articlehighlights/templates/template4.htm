@@ -7,23 +7,22 @@
 	<div class="row newslist">
 		<div class="col-xs-12">
 			{% for highlight in highlights %}
-			<div class="horizontal">
-				{% if highlight.href %}
-				<a href="{{highlight.href}}">
-					{% endif %}
-					<div class="text-published">{{highlight.pretty_published_at}}</div>
-
-
-					{% if highlight.title %}
-					<h3 class="card-title">{{highlight.title}}</h3>
-					{% endif %}
+			<div class="col-xs-12 col-md-3 news-item item-{{slug}}">
+				<div class="row news_column">
 					{% if highlight.href %}
-					<div class="read_more">read more</div>
+					<a class="news-image col-xs-12 center-xs" href="{{highlight.href}}">
+						{% endif %}
+						<img class="news-img-top" src="{{ highlight.cover|crop_image|resize(width, height, {'mode': 'crop'}) }}">
+						{% if highlight.href %}
+					</a>
 					{%endif %}
-
-					{% if highlight.href %}
-				</a>
-				{%endif %}
+					<div class="news-container col-xs-12">
+						<div class="text-published">{{highlight.pretty_published_at}}</div>
+						<div class="news-title">
+							<h3 class="card-title"><a href="{{highlight.href}}">{{highlight.title}}</a></h3>
+						</div>
+					</div>
+				</div>
 			</div>
 
 			{% endfor %}
