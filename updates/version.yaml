@@ -10,3 +10,5 @@
     - 'Added Pagination to articles list'
 1.0.5:
     - 'Added new component template and related articles component'
+1.0.6:
+    - 'new properties'

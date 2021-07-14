@@ -1,0 +1,31 @@
+<div class="container highlights-news">
+	<div class="row">
+		<div class="col-xs-12">
+			<h1 class="base_heading highlight_new_template_3">{{title}}</h1>
+		</div>
+	</div>
+	<div class="row newslist around-xs between-md">
+				{% for highlight in highlights %}
+				<div class="horizontal col-xs-12 col-md-3">
+						{% if highlight.cover %}
+						<img class="card-img-top" src="{{ highlight.cover|crop_image|resize(398, 361, {'mode': 'crop'}) }}">
+						{% else %}
+						<img class="card-img-top" src="{{ 'pensoft/No_Image_Available.jpg'|media }}">
+						{% endif %}
+						<div class="text-published">{{highlight.pretty_published_at}}</div>
+						{% if highlight.href %}
+							<a href="{{highlight.href}}">
+						{% endif %}
+
+						{% if highlight.title %}
+							<h3 class="card-title">{{highlight.title}}</h3>
+						{% endif %}
+
+					{% if highlight.href %}
+						</a>
+					{%endif %}
+				</div>
+
+				{% endfor %}
+	</div>
+</div>

@@ -46,7 +46,7 @@ class RelatedArticles extends ComponentBase
 
 			$related = Article::where('slug', '!=', $this->param('id'))
 				->latest()
-				->limit(3);
+				->limit($this->property('limit'));
 			foreach($arrayOfTags as $tag){
 				$related->orWhere('keywords', 'ILIKE', '%'.$tag.'%');
 			}
