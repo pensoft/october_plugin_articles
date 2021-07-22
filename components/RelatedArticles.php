@@ -44,13 +44,23 @@ class RelatedArticles extends ComponentBase
 			$article = Article::where('slug', $this->param('id'))->first();
 			$arrayOfTags = explode(",", $article->keywords);
 
-			$related = Article::where('slug', '!=', $this->param('id'))
-				->latest()
-				->limit($this->property('limit'));
+			$related = Article::where('slug', '!=', $this->param('id'));
+
+			$orWhere = '( ';
+			$c = 1;
+
 			foreach($arrayOfTags as $tag){
-				$related->orWhere('keywords', 'ILIKE', '%'.$tag.'%');
+				$orWhere .= ' keywords ILIKE \'%'.trim($tag).'%\' ';
+				if($c < count($arrayOfTags)){
+					$orWhere .= ' or ';
+				}
+				$c++;
 			}
-			$related = $related->get();
+			$orWhere .= ')';
+			$related = $related
+				->whereRaw($orWhere)
+				->limit($this->property('limit'))
+				->get();
 
 			return $related;
 		}
