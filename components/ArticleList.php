@@ -56,6 +56,11 @@ class ArticleList extends ComponentBase
 				'description' => 'Cover image height in pixels',
 				'default' => 250,
 			],
+			'no_records_message' => [
+				'title' => 'No records message',
+				'description' => 'Message to be displeyed when no listems are added',
+				'default' => 'No records found',
+			],
         ];
     }
 

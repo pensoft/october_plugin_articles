@@ -1,4 +1,4 @@
-
+{% if __SELF__.getArticles().count() %}
 <div class="newslist row">
     {% for item in __SELF__.getArticles() %}
 		{% partial __SELF__ ~ "::templates/" ~ __SELF__.property('templates')
@@ -17,3 +17,6 @@
 
 	{{ __SELF__.getArticles().render|raw }}
 </div>
+{% else %}
+<div class="no-records">{{ __SELF__.property('no_records_message') }}</div>
+{% endif %}
