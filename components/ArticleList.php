@@ -46,6 +46,21 @@ class ArticleList extends ComponentBase
 				'type' => 'dropdown',
 				'default' => 'template1'
 			],
+			'thumb_width' => [
+				'title' => 'Cover image width',
+				'description' => 'Cover image width in pixels',
+				'default' => 250,
+			],
+			'thumb_height' => [
+				'title' => 'Cover image height',
+				'description' => 'Cover image height in pixels',
+				'default' => 250,
+			],
+			'no_records_message' => [
+				'title' => 'No records message',
+				'description' => 'Message to be displeyed when no listems are added',
+				'default' => 'No records found',
+			],
         ];
     }
 
@@ -54,6 +69,7 @@ class ArticleList extends ComponentBase
 		return [
 			'template1' => 'Template 1',
 			'template2' => 'Template 2',
+			'template3' => 'Template 3',
 		];
 	}
 

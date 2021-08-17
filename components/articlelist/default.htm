@@ -1,5 +1,5 @@
-
-<div class="news row between-md">
+{% if __SELF__.getArticles().count() %}
+<div class="newslist row">
     {% for item in __SELF__.getArticles() %}
 		{% partial __SELF__ ~ "::templates/" ~ __SELF__.property('templates')
             slug=item.slug
@@ -10,8 +10,13 @@
             image=item.cover
             published_at=item.pretty_published_at
             allow_share=item.allow_share
+            width=__SELF__.property('thumb_width')
+            height=__SELF__.property('thumb_height')
         %}
     {% endfor %}
 
 	{{ __SELF__.getArticles().render|raw }}
 </div>
+{% else %}
+<div class="no-records">{{ __SELF__.property('no_records_message') }}</div>
+{% endif %}

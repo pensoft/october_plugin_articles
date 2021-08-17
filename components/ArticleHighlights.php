@@ -47,6 +47,16 @@ class ArticleHighlights extends ComponentBase
 				'type' => 'dropdown',
 				'default' => 'template1'
 			],
+			'thumb_width' => [
+				'title' => 'Cover image width',
+				'description' => 'Cover image width in pixels',
+				'default' => 250,
+			],
+			'thumb_height' => [
+				'title' => 'Cover image height',
+				'description' => 'Cover image height in pixels',
+				'default' => 250,
+			],
         ];
     }
 
@@ -55,6 +65,8 @@ class ArticleHighlights extends ComponentBase
 		return [
 			'template1' => 'Template 1',
 			'template2' => 'Template 2',
+			'template3' => 'Template 3',
+			'template4' => 'Template 4',
 		];
 	}
 
