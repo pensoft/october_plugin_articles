@@ -2,13 +2,15 @@
 
 namespace Pensoft\Articles\Components;
 
+use Backend\Facades\BackendAuth;
 use \Cms\Classes\ComponentBase;
 use Illuminate\Support\Facades\Lang;
 use Pensoft\Articles\Models\Article;
 
 class ArticleList extends ComponentBase
 {
-    /**
+	public $loggedIn;
+	/**
      * Executed when this component is bound to a page or layout, part of
      * the page life cycle.
      */
@@ -23,6 +25,12 @@ class ArticleList extends ComponentBase
         if ($this->page['card_horizontal']) {
             $this->page['class'] .= $this->page['class'] ? " card-horizontal" : "card-horizontal";
         }
+		// by default users are not logged in
+		$this->loggedIn = false;
+		// end then if getUser returns other value than NULL then our user is logged in
+		if (!empty(BackendAuth::getUser())) {
+			$this->loggedIn = true;
+		}
     }
 
     public function componentDetails()
@@ -70,6 +78,7 @@ class ArticleList extends ComponentBase
 			'template1' => 'Template 1',
 			'template2' => 'Template 2',
 			'template3' => 'Template 3',
+			'template4' => 'Template 4',
 		];
 	}
 

@@ -2,12 +2,14 @@
 
 namespace Pensoft\Articles\Components;
 
+use Backend\Facades\BackendAuth;
 use \Cms\Classes\ComponentBase;
 use Pensoft\Articles\Models\Article;
 
 class ArticleHighlights extends ComponentBase
 {
-    /**
+	public $loggedIn;
+	/**
      * Executed when this component is bound to a page or layout, part of
      * the page life cycle.
      */
@@ -15,6 +17,12 @@ class ArticleHighlights extends ComponentBase
     {
         $this->addJs('assets/js/slick.min.js');
         $this->addJs('assets/js/def.js');
+		// by default users are not logged in
+		$this->loggedIn = false;
+		// end then if getUser returns other value than NULL then our user is logged in
+		if (!empty(BackendAuth::getUser())) {
+			$this->loggedIn = true;
+		}
     }
 
     public function componentDetails()

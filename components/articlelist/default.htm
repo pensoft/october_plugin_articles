@@ -10,9 +10,13 @@
             image=item.cover
             published_at=item.pretty_published_at
             allow_share=item.allow_share
+            external=item.external
             width=__SELF__.property('thumb_width')
             height=__SELF__.property('thumb_height')
         %}
+		{% if __SELF__.loggedIn %}
+		<a class="edit-link" href="/admin/pensoft/articles/article/update/{{item.id}}" target="_blank">Edit</a>
+		{% endif %}
     {% endfor %}
 
 	{{ __SELF__.getArticles().render|raw }}

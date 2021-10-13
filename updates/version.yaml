@@ -13,4 +13,13 @@
 1.0.6:
     - 'Added new component template new properties'
 1.0.7:
-  - 'No records found message'
+    - 'No records found message'
+1.0.8:
+    - 'Update table pensoft_articles_article add column external'
+1.0.9:
+    - 'Update table pensoft_articles_article add column external'
+1.0.10:
+    - 'Updated table pensoft_articles_article'
+    - builder_table_update_pensoft_articles_article.php
+1.0.11:
+    - 'News added checkbox/slider for internar/external'

@@ -33,6 +33,11 @@ fields:
         span: right
         default: true
         type: switch
+    external:
+        label: 'Is external'
+        span: right
+        default: true
+        type: switch
     cover:
         label: Cover
         span: right
