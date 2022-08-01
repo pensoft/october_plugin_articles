@@ -23,3 +23,5 @@
     - builder_table_update_pensoft_articles_article.php
 1.0.11:
     - 'News added checkbox/slider for internar/external'
+1.0.12:
+    - 'Published at'

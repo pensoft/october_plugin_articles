@@ -100,7 +100,7 @@ class ArticleList extends ComponentBase
 
     public function getArticles()
     {
-        $news = Article::news()->descPublished();
+        $news = Article::news()->where('published_at', '<=', 'now()')->orderBy('published_at', 'DESC');
         if ($this->property('maxItems') > 0) {
 //            return $news->take($this->property('maxItems'))->get();
             return $news->paginate($this->property('maxItems'), ['*'], 'p');
