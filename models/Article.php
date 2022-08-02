@@ -22,7 +22,11 @@ class Article extends Model
     /**
      * @var array Validation rules
      */
-    public $rules = [];
+    public $rules = [
+        'title' => 'required',
+        'published_at' => 'required',
+        'cover' => 'required',
+    ];
 
     public $attachOne = [
         'cover' => 'System\Models\File'
@@ -77,5 +81,4 @@ class Article extends Model
     {
         return trim(urlencode($this->title));
     }
-
 }
