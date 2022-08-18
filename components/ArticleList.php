@@ -79,6 +79,7 @@ class ArticleList extends ComponentBase
 			'template2' => 'Template 2',
 			'template3' => 'Template 3',
 			'template4' => 'Template 4',
+			'template5' => 'Template 5',
 		];
 	}
 

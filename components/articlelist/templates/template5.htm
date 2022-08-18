@@ -6,10 +6,11 @@
 		</a>
 		{% endif %}
 		<div class="news-container col-xs-12">
+            <div class="text-published">{{published_at}}</div>
 			<div class="news-title">
 				<h3 class="card-title"><a href="{{url}}">{{title}}</a></h3>
 			</div>
-			<div class="text-published">{{published_at}}</div>
+
 			<div class="body">{{content|raw}}</div>
 		</div>
 	</div>

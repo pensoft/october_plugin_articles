@@ -1,7 +1,7 @@
 <div class="news-item item-{{slug}}">
 	{% if image %}
 	<a class="news-image" href="{{url}}">
-		<img class="news-img-left" src="{{image.getThumb(280, 181, {'mode': 'crop'})}}">
+		<img class="news-img-left" src="{{image.getThumb(width, height, {'mode': 'crop'})}}">
 	</a>
 	{% endif %}
 	<div class="news-container">
