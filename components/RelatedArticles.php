@@ -41,10 +41,10 @@ class RelatedArticles extends ComponentBase
 	{
 		$related = array();
 		if($this->param('id')){
-			$article = Article::where('slug', $this->param('id'))->first();
+			$article = Article::where('slug', $this->param('id'))->where('published', 'true')->first();
 			$arrayOfTags = explode(",", $article->keywords);
 
-			$related = Article::where('slug', '!=', $this->param('id'));
+			$related = Article::where('slug', '!=', $this->param('id'))->where('published', 'true');
 
 			$orWhere = '( ';
 			$c = 1;
