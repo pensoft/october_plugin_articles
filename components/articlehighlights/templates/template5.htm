@@ -1,0 +1,64 @@
+<div class="container highlights-news">
+	<div class="row">
+		<div class="col-xs-12">
+			<h1 class="base_heading highlight_new_template_3">{{title}}</h1>
+		</div>
+	</div>
+	<div class="row newslist">
+        <div id="card-carousel" class="card-carousel">
+            {% for highlight in highlights %}
+            <div class="col-xs-12 col-md-3 news-item item-{{slug}}">
+                <div class="row news_column">
+                    {% if highlight.href %}
+                    <a class="news-image col-xs-12 center-xs" href="{{highlight.href}}">
+                        {% endif %}
+                        <img class="news-img-top" src="{{ highlight.cover|crop_image|resize(width, height, {'mode': 'crop'}) }}">
+                        {% if highlight.href %}
+                    </a>
+                    {%endif %}
+                    {% if highlight.content or highlight.title %}
+                    <div class="news-container col-xs-12">
+                        <div class="text-published">{{highlight.pretty_published_at}}</div>
+                        <div class="news-title">
+                            <h3 class="card-title"><a href="{{highlight.href}}">{{highlight.title}}</a></h3>
+                        </div>
+                        <div class="card-description">
+                            {{highlight.content|raw}}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    {% if highlight.href %}
+                    </a>
+                    {%endif %}
+
+                </div>
+            </div>
+
+            {% endfor %}
+        </div>
+
+		<div class="col-xs-12">
+			{% for highlight in highlights %}
+			<div class="col-xs-12 col-md-3 news-item item-{{slug}}">
+				<div class="row news_column">
+					{% if highlight.href %}
+					<a class="news-image col-xs-12 center-xs" href="{{highlight.href}}">
+						{% endif %}
+						<img class="news-img-top" src="{{ highlight.cover|crop_image|resize(width, height, {'mode': 'crop'}) }}">
+						{% if highlight.href %}
+					</a>
+					{%endif %}
+					<div class="news-container col-xs-12">
+						<div class="text-published">{{highlight.pretty_published_at}}</div>
+						<div class="news-title">
+							<h3 class="card-title"><a href="{{highlight.href}}">{{highlight.title}}</a></h3>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			{% endfor %}
+		</div>
+	</div>
+</div>

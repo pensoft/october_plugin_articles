@@ -34,3 +34,5 @@
 1.0.16:
     - 'Updated table pensoft_articles_article'
     - builder_table_update_pensoft_articles_article_2.php
+1.0.17:
+    - 'New template 5 for article highlights'
