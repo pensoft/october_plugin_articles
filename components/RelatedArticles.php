@@ -60,6 +60,7 @@ class RelatedArticles extends ComponentBase
 			$related = $related
 				->whereRaw($orWhere)
 				->limit($this->property('limit'))
+                ->where('published_at', '<=', 'now()')
 				->get();
 
 			return $related;
