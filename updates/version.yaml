@@ -24,10 +24,24 @@
 1.0.11:
     - 'News added checkbox/slider for internar/external'
 1.0.12:
-    - 'Fix'
+    - Fix
 1.0.13:
     - 'Published at'
 1.0.14:
     - 'Backend requred fields'
 1.0.15:
+    - 'New template 5'
+1.0.16:
+    - 'Updated table pensoft_articles_article'
+    - builder_table_update_pensoft_articles_article_2.php
+1.0.17:
+    - 'New template 5 for article highlights'
+1.0.18:
+    - 'Fixed template 5 for article highlights'
+1.0.19:
+    - 'Updated table pensoft_articles_article'
+    - builder_table_update_pensoft_articles_article_3.php
+1.0.20:
+    - 'Revision history'
+1.0.21:
     - 'Related articles date fix'

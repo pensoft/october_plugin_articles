@@ -75,6 +75,7 @@ class ArticleHighlights extends ComponentBase
 			'template2' => 'Template 2',
 			'template3' => 'Template 3',
 			'template4' => 'Template 4',
+			'template5' => 'Template 5',
 		];
 	}
 
@@ -97,7 +98,7 @@ class ArticleHighlights extends ComponentBase
             return;
         }
 
-        return Article::news()->where('published_at', '<=', 'now()')->take($this->property('maxItems'))->orderBy('published_at', 'DESC')->get()->map(function($item){
+        return Article::news()->where('published_at', '<=', 'now()')->where('published', 'true')->take($this->property('maxItems'))->orderBy('published_at', 'DESC')->get()->map(function($item){
             $item->content = str_limit(strip_tags($item->content), 100);
             $item->href = $this->getBaseUrl($item->slug);
             return $item;

@@ -5,6 +5,7 @@ namespace Pensoft\Articles\Models;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Lang;
 use Model;
+use BackendAuth;
 
 /**
  * Model
@@ -12,6 +13,18 @@ use Model;
 class Article extends Model
 {
     use \October\Rain\Database\Traits\Validation;
+
+    // For Revisionable namespace
+    use \October\Rain\Database\Traits\Revisionable;
+
+    public $timestamps = false;
+
+    // Add  for revisions limit
+    public $revisionableLimit = 200;
+
+    // Add for revisions on particular field
+    protected $revisionable = ["id","title","content"];
+
     const TYPE_NEWS = 1;
     const TYPE_PUBLICATIONS = 2;
     /**
@@ -30,6 +43,11 @@ class Article extends Model
 
     public $attachOne = [
         'cover' => 'System\Models\File'
+    ];
+
+    // Add  below relationship with Revision model
+    public $morphMany = [
+        'revision_history' => ['System\Models\Revision', 'name' => 'revisionable']
     ];
 
     public function scopeNews($query)
@@ -80,5 +98,14 @@ class Article extends Model
     public function getTitleEncodedAttribute()
     {
         return trim(urlencode($this->title));
+    }
+
+    // Add below function use for get current user details
+    public function diff(){
+        $history = $this->revision_history;
+    }
+    public function getRevisionableUser()
+    {
+        return BackendAuth::getUser()->id;
     }
 }

@@ -79,6 +79,7 @@ class ArticleList extends ComponentBase
 			'template2' => 'Template 2',
 			'template3' => 'Template 3',
 			'template4' => 'Template 4',
+			'template5' => 'Template 5',
 		];
 	}
 
@@ -100,7 +101,7 @@ class ArticleList extends ComponentBase
 
     public function getArticles()
     {
-        $news = Article::news()->where('published_at', '<=', 'now()')->orderBy('published_at', 'DESC');
+        $news = Article::news()->where('published_at', '<=', 'now()')->where('published', 'true')->orderBy('published_at', 'DESC');
         if ($this->property('maxItems') > 0) {
 //            return $news->take($this->property('maxItems'))->get();
             return $news->paginate($this->property('maxItems'), ['*'], 'p');

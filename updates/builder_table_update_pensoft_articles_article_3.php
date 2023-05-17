@@ -3,13 +3,13 @@
 use Schema;
 use October\Rain\Database\Updates\Migration;
 
-class BuilderTableUpdatePensoftArticlesArticle extends Migration
+class BuilderTableUpdatePensoftArticlesArticle3 extends Migration
 {
     public function up()
     {
         Schema::table('pensoft_articles_article', function($table)
         {
-            $table->boolean('external')->nullable()->default(true);
+            $table->text('caption')->nullable();
         });
     }
     
@@ -17,7 +17,7 @@ class BuilderTableUpdatePensoftArticlesArticle extends Migration
     {
         Schema::table('pensoft_articles_article', function($table)
         {
-            $table->dropColumn('external');
+            $table->dropColumn('caption');
         });
     }
 }
