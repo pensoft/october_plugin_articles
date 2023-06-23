@@ -45,3 +45,12 @@
     - 'Revision history'
 1.0.21:
     - 'Related articles date fix'
+1.0.22:
+    - 'Created galleries table'
+    - builder_table_create_pensoft_articles_galleries.php
+1.0.23:
+    - 'Updated galleries table'
+    - builder_table_update_pensoft_articles_galleries.php
+1.0.24:
+    - 'Updated galleries table 2'
+    - builder_table_update_pensoft_articles_galleries_2.php

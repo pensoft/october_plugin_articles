@@ -74,3 +74,25 @@ fields:
         span: auto
         default: 1
         type: switch
+    galleries:
+        label: Galleries
+        prompt: Add New Gallery
+        span: full
+        type: repeater
+        form:
+            fields:
+                name:
+                    label: Gallery
+                    span: full
+                    type: text
+                images:
+                    label: Images
+                    mode: image
+                    imageWidth: '270'
+                    fileTypes: 'svg,png,jpg'
+                    useCaption: true
+                    thumbOptions:
+                        mode: crop
+                        extension: auto
+                    span: full
+                    type: fileupload

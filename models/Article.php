@@ -45,6 +45,10 @@ class Article extends Model
         'cover' => 'System\Models\File'
     ];
 
+    public $hasMany = [
+        'galleries' => ['Pensoft\Articles\Models\Gallery']
+    ];
+
     // Add  below relationship with Revision model
     public $morphMany = [
         'revision_history' => ['System\Models\Revision', 'name' => 'revisionable']

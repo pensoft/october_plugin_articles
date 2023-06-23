@@ -1,0 +1,23 @@
+{% if galleries is not empty %}
+<div class="gallery-container">
+    <div class="custom-gallery-header">
+        <h1 class="single-new-title">Gallery</h1>
+    </div>
+    {% for gallery in galleries %}
+    <div class="col-xs-12 custom-gallery">
+        <div class="custom-gallery-subheader">
+            <h3>{{ gallery.name }}</h3>
+        </div>
+        <div class="row custom-gallery-images">
+            {% for image in gallery.images %}
+            <div class="custom-gallery-item">
+                <a href="{{ image.path }}" data-lightbox="article-gallery" title="{{ image.title|default('') }}">
+                    <img class="img-fluid" src="{{ image.thumb(150, 150, {'mode':'crop'}) }}" alt="{{ image.title|default('') }}">
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
