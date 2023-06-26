@@ -54,3 +54,5 @@
 1.0.24:
     - 'Updated galleries table 2'
     - builder_table_update_pensoft_articles_galleries_2.php
+1.0.25:
+    - 'gallery style fix'
