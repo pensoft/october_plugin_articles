@@ -45,14 +45,23 @@ class Article extends Model
         'cover' => 'System\Models\File'
     ];
 
-    public $hasMany = [
-        'galleries' => ['Pensoft\Articles\Models\Gallery']
-    ];
-
     // Add  below relationship with Revision model
     public $morphMany = [
         'revision_history' => ['System\Models\Revision', 'name' => 'revisionable']
     ];
+
+    /**
+     * Actions to perform before deleting an article.
+     * It checks if the Galleries model exists in the Media plugin.
+     * If so, it dissociates the galleries linked to this article.
+     */
+    public function beforeDelete()
+    {
+        if (class_exists('\Pensoft\Media\Models\Galleries')) {
+            \Pensoft\Media\Models\Galleries::where('article_id', $this->id)
+                ->update(['article_id' => null, 'related' => false]);
+        }
+    }
 
     public function scopeNews($query)
     {

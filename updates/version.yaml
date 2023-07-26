@@ -56,3 +56,8 @@
     - builder_table_update_pensoft_articles_galleries_2.php
 1.0.25:
     - 'gallery style fix'
+1.0.26:
+    - 'Dropped galleries table'
+    - builder_table_drop_pensoft_articles_galleries.php
+1.0.27:
+    - 'Modified the logic for attaching photogalleries to articles'
