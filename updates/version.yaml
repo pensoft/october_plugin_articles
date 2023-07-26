@@ -61,3 +61,5 @@
     - builder_table_drop_pensoft_articles_galleries.php
 1.0.27:
     - 'Modified the logic for attaching photogalleries to articles'
+1.0.28:
+    - 'Fixed photogalleries to articles, added title'

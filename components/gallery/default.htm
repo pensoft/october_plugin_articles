@@ -1,10 +1,10 @@
 {% if galleries is not empty %}
 <div class="gallery-container">
-    <div class="custom-gallery-header">
-        <h1 class="single-new-title">Gallery</h1>
-    </div>
-    {% for gallery in galleries %}
 
+    {% for gallery in galleries %}
+    <div class="custom-gallery-header">
+        <h1 class="single-new-title">{{gallery.name}}</h1>
+    </div>
     <div class="gallery_container">
         {% for key1, value1 in gallery.images %}
         <div class="mySlides">
