@@ -63,3 +63,5 @@
     - 'Modified the logic for attaching photogalleries to articles'
 1.0.28:
     - 'Fixed photogalleries to articles, added title'
+1.0.29:
+    - 'Related articles'
