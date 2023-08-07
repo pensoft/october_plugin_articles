@@ -45,6 +45,10 @@ class Article extends Model
         'cover' => 'System\Models\File'
     ];
 
+    public $attachMany = [
+        'gallery' => 'System\Models\File'
+    ];
+
     // Add  below relationship with Revision model
     public $morphMany = [
         'revision_history' => ['System\Models\Revision', 'name' => 'revisionable']

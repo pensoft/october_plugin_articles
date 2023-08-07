@@ -8,10 +8,10 @@ use Pensoft\Articles\Models\Article;
  */
 class RelatedArticles extends ComponentBase
 {
-	public function onRun()
-	{
-
-	}
+    public function onRun()
+    {
+        $this->page['relatedArticles'] = $this->related();
+    }
 
     public function componentDetails()
     {
@@ -23,48 +23,48 @@ class RelatedArticles extends ComponentBase
 
     public function defineProperties()
     {
-		return [
-			'limit' => [
-				'title' => 'Limit',
-				'description' => 'Max items allowed',
-				'default' => 4,
-			],
-		];
+        return [
+            'limit' => [
+                'title' => 'Limit',
+                'description' => 'Max items allowed',
+                'default' => 4,
+            ],
+        ];
     }
 
-	public function getUrl($item, $page_id)
-	{
-		return $this->pageUrl($page_id, ['id' => $item->slug]);
-	}
+    public function getUrl($item, $page_id)
+    {
+        return $this->pageUrl($page_id, ['id' => $item->slug]);
+    }
 
-	public function related()
-	{
-		$related = array();
-		if($this->param('id')){
-			$article = Article::where('slug', $this->param('id'))->where('published', 'true')->first();
-			$arrayOfTags = explode(",", $article->keywords);
+    public function related()
+    {
+        if (!$this->param('id')) {
+            return [];
+        }
 
-			$related = Article::where('slug', '!=', $this->param('id'))->where('published', 'true');
+        $article = Article::where('slug', $this->param('id'))->where('published', true)->first();
 
-			$orWhere = '( ';
-			$c = 1;
+        if (!$article || empty($article->keywords)) {
+            return [];
+        }
 
-			foreach($arrayOfTags as $tag){
-				$orWhere .= ' keywords ILIKE \'%'.trim($tag).'%\' ';
-				if($c < count($arrayOfTags)){
-					$orWhere .= ' or ';
-				}
-				$c++;
-			}
-			$orWhere .= ')';
-			$related = $related
-				->whereRaw($orWhere)
-				->limit($this->property('limit'))
-                ->where('published_at', '<=', 'now()')
-				->get();
+        $tags = array_map('trim', explode(",", $article->keywords));
 
-			return $related;
-		}
+        $relatedQuery = Article::where('slug', '!=', $this->param('id'))
+            ->where('published', true)
+            ->where(function ($query) use ($tags) {
+                foreach ($tags as $tag) {
+                    $query->orWhereRaw('LOWER(keywords) LIKE ?', ['%' . strtolower($tag) . '%']);
+                }
+            });
 
-	}
+        $relatedArticles = $relatedQuery
+            ->where('published_at', '<=', now())
+            ->limit($this->property('limit'))
+            ->get();
+
+        return $relatedArticles;
+    }
+
 }

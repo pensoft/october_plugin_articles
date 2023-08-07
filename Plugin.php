@@ -4,6 +4,7 @@ use Pensoft\Articles\Components\ArticleHighlights;
 use Pensoft\Articles\Components\ArticleList;
 use Pensoft\Articles\Components\PublicationsList;
 use Pensoft\Articles\Components\RelatedArticles;
+use Pensoft\Articles\Components\ImageGallery;
 use System\Classes\PluginBase;
 use SaurabhDhariwal\Revisionhistory\Classes\Diff as Diff;
 use System\Models\Revision as Revision;
@@ -14,11 +15,13 @@ class Plugin extends PluginBase
     {
         return [
             ArticleList::class => 'list',
-			PublicationsList::class => 'publications_list',
+            PublicationsList::class => 'publications_list',
             ArticleHighlights::class => 'article_highlights',
             RelatedArticles::class => 'related_articles',
+            ImageGallery::class => 'image_gallery',
         ];
     }
+
 
     public function boot(){
         /* Extetions for revision */
