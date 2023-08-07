@@ -45,3 +45,21 @@
     - 'Revision history'
 1.0.21:
     - 'Related articles date fix'
+1.0.22:
+    - 'Created galleries table'
+    - builder_table_create_pensoft_articles_galleries.php
+1.0.23:
+    - 'Updated galleries table'
+    - builder_table_update_pensoft_articles_galleries.php
+1.0.24:
+    - 'Updated galleries table 2'
+    - builder_table_update_pensoft_articles_galleries_2.php
+1.0.25:
+    - 'gallery style fix'
+1.0.26:
+    - 'Dropped galleries table'
+    - builder_table_drop_pensoft_articles_galleries.php
+1.0.27:
+    - 'Modified the logic for attaching photogalleries to articles'
+1.0.28:
+    - 'Fixed photogalleries to articles, added title'
