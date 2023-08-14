@@ -65,3 +65,5 @@
     - 'Fixed photogalleries to articles, added title'
 1.0.29:
     - 'Related articles'
+1.0.30:
+    - 'Related articles cover image'

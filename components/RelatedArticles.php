@@ -29,6 +29,16 @@ class RelatedArticles extends ComponentBase
                 'description' => 'Max items allowed',
                 'default' => 4,
             ],
+            'thumb_width' => [
+                'title' => 'Cover image width',
+                'description' => 'Cover image width in pixels',
+                'default' => 250,
+            ],
+            'thumb_height' => [
+                'title' => 'Cover image height',
+                'description' => 'Cover image height in pixels',
+                'default' => 250,
+            ],
         ];
     }
 
