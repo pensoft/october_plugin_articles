@@ -1,0 +1,74 @@
+{% if galleries is not empty %}
+<div class="gallery-container">
+
+    {% for gallery in galleries %}
+    <div class="custom-gallery-header">
+        <h1 class="single-new-title">{{gallery.name}}</h1>
+    </div>
+    <div class="gallery_container">
+        {% for key1, value1 in gallery.images %}
+        <div class="mySlides">
+            <img class="img-fluid" src="{{ value1.thumb(auto, 350, {'mode':'crop'})}}" alt="{{ value1.title|default('') }}">
+        </div>
+
+
+        {% endfor %}
+
+        <a class="prev" onclick="plusSlides(-1)">❮</a>
+        <a class="next" onclick="plusSlides(1)">❯</a>
+
+        <div class="caption-container">
+            <p id="caption"></p>
+        </div>
+
+        <div class="row">
+            {% for key2, value2 in gallery.images %}
+            <div class="column">
+                <img class="demo cursor" src="{{ value2.thumb(155, 103, {'mode':'crop'})}}" style="width:100%" onclick="currentSlide(({{key2}} + 1))" alt="{{ value2.title|default('') }}">
+            </div>
+
+
+
+            {% endfor %}
+
+        </div>
+    </div>
+
+    {% endfor %}
+
+
+
+    <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = $(".mySlides");
+            console.log(slides)
+            let dots = document.getElementsByClassName("demo");
+            let captionText = document.getElementById("caption");
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex-1].style.display = "block";
+            dots[slideIndex-1].className += " active";
+            captionText.innerHTML = dots[slideIndex-1].alt;
+        }
+    </script>
+
+</div>
+{% endif %}

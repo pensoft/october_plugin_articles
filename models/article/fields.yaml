@@ -2,6 +2,7 @@ fields:
     title:
         label: Title
         span: left
+        required: 1
         type: text
     slug:
         label: Slug
@@ -15,10 +16,16 @@ fields:
         size: large
         span: left
         type: richeditor
+    caption:
+        label: Caption
+        size: large
+        span: auto
+        type: richeditor
     published_at:
         label: 'Published at'
         mode: datetime
         span: auto
+        required: 1
         type: datepicker
     keywords:
         label: Tags
@@ -40,14 +47,15 @@ fields:
         type: switch
     cover:
         label: Cover
-        span: right
         mode: image
+        imageWidth: '270'
         fileTypes: 'svg,png,jpg'
         useCaption: true
         thumbOptions:
             mode: crop
             extension: auto
-        imageWidth: '270'
+        span: right
+        required: 1
         type: fileupload
     type:
         label: Type
@@ -61,3 +69,19 @@ fields:
         label: URL
         span: left
         type: text
+    published:
+        label: 'Is published'
+        span: auto
+        default: 1
+        type: switch
+    gallery:
+        label: Gallery
+        mode: image
+        imageWidth: '270'
+        fileTypes: 'svg,png,jpg'
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: right
+        type: fileupload

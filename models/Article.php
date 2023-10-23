@@ -5,7 +5,6 @@ namespace Pensoft\Articles\Models;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Lang;
 use Model;
-
 use BackendAuth;
 use Validator;
 
@@ -15,7 +14,6 @@ use Validator;
 class Article extends Model
 {
     use \October\Rain\Database\Traits\Validation;
-
 
     // For Revisionable namespace
     use \October\Rain\Database\Traits\Revisionable;
@@ -27,6 +25,7 @@ class Article extends Model
 
     // Add for revisions on particular field
     protected $revisionable = ["id","title","content"];
+
 
     /**
      * @var array Translatable fields
@@ -43,7 +42,6 @@ class Article extends Model
         'published'
     ];
 
-
     const TYPE_NEWS = 1;
     const TYPE_PUBLICATIONS = 2;
     /**
@@ -54,11 +52,37 @@ class Article extends Model
     /**
      * @var array Validation rules
      */
-    public $rules = [];
+    public $rules = [
+        'title' => 'required',
+        'published_at' => 'required',
+        'cover' => 'required',
+    ];
 
     public $attachOne = [
         'cover' => 'System\Models\File'
     ];
+
+    public $attachMany = [
+        'gallery' => 'System\Models\File'
+    ];
+
+    // Add  below relationship with Revision model
+    public $morphMany = [
+        'revision_history' => ['System\Models\Revision', 'name' => 'revisionable']
+    ];
+
+    /**
+     * Actions to perform before deleting an article.
+     * It checks if the Galleries model exists in the Media plugin.
+     * If so, it dissociates the galleries linked to this article.
+     */
+    public function beforeDelete()
+    {
+        if (class_exists('\Pensoft\Media\Models\Galleries')) {
+            \Pensoft\Media\Models\Galleries::where('article_id', $this->id)
+                ->update(['article_id' => null, 'related' => false]);
+        }
+    }
 
     public function scopeNews($query)
     {
