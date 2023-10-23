@@ -4,9 +4,9 @@
 	</div>
 	<div class="row news_column">
 		{% if external %}
-			<span class="external_news_label">External news</span>
+			<span class="external_news_label">{{'External news' |_}}</span>
 		{% else %}
-			<span class="internal_news_label">{{this.theme.site_name}} news</span>
+			<span class="internal_news_label">{{this.theme.site_name}} {{'news' |_}}</span>
 		{% endif %}
 
 		{% if image %}
@@ -25,7 +25,7 @@
 			</div>
 			<div class="row">
 				<div class="col-xs-6">
-					<a href="{{url}}" class="btn btn-primary">Read article</a>
+					<a href="{{url}}" class="btn btn-primary">{{'Read article' |_}}</a>
 				</div>
 				<div class="col-xs-6">
 					{% if allow_share == 'yes' %}
