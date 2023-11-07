@@ -1,74 +1,95 @@
-{% if galleries is not empty %}
-<div class="gallery-container">
-
-    {% for gallery in galleries %}
-    <div class="custom-gallery-header">
-        <h1 class="single-new-title">{{gallery.name}}</h1>
-    </div>
-    <div class="gallery_container">
-        {% for key1, value1 in gallery.images %}
-        <div class="mySlides">
-            <img class="img-fluid" src="{{ value1.thumb(auto, 350, {'mode':'crop'})}}" alt="{{ value1.title|default('') }}">
+{% for gallery in galleries %}
+<div class="gallery-wrapper">
+    <div class="row justify-content-center gallery-item">
+        <div class="col-xs-12 text-center gallery-title">
+            <h1>{{ gallery.name }}</h1>
         </div>
-
-
-        {% endfor %}
-
-        <a class="prev" onclick="plusSlides(-1)">❮</a>
-        <a class="next" onclick="plusSlides(1)">❯</a>
-
-        <div class="caption-container">
-            <p id="caption"></p>
+        <div class="col-xs-12 text-center pb-5">
+            {{ form_open({request: __SELF__ ~ '::onDownload'}) }}
+            <input type="hidden" name="gallery_id" value="{{ gallery.id }}">
+            <button type="submit" href="#" class="btn btn-primary">{{'Download all images' |_}}</button>
+            {{ form_close() }}        
         </div>
+        <div class="col-xs-12 col-md-10">
+            <div class="news_content_wrapper">
+                <div class="gallery_container" id="gallery_{{ gallery.id }}">
+                    {% for image in gallery.images %}
+                    <div class="mySlides mySlides_{{ gallery.id }}">
+                        <img class="img-fluid" src="{{ image.thumb(auto, 600, {'mode':'crop'}) }}" alt="{{ image.title | default('') }}">
+                    </div>
+                    {% endfor %}
 
-        <div class="row">
-            {% for key2, value2 in gallery.images %}
-            <div class="column">
-                <img class="demo cursor" src="{{ value2.thumb(155, 103, {'mode':'crop'})}}" style="width:100%" onclick="currentSlide(({{key2}} + 1))" alt="{{ value2.title|default('') }}">
+                    <a class="prev" onclick="plusSlides(-1, {{ gallery.id }})"></a>
+                    <a class="next" onclick="plusSlides(1, {{ gallery.id }})"></a>
+
+                    <div class="caption-container">
+                        <p id="caption_{{ gallery.id }}"></p>
+                    </div>
+
+                    <div class="row">
+                        {% for key, image in gallery.images %}
+                        <div class="column">
+                            <img class="demo cursor demo_{{ gallery.id }}" src="{{ image.thumb(155, 103, {'mode':'crop'}) }}" style="width:100%" onclick="currentSlide({{ key + 1 }}, {{ gallery.id }})" alt="{{ image.title | default('') }}">
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
-
-
-
-            {% endfor %}
-
         </div>
     </div>
-
-    {% endfor %}
-
-
-
-    <script>
-        let slideIndex = 1;
-        showSlides(slideIndex);
-
-        function plusSlides(n) {
-            showSlides(slideIndex += n);
-        }
-
-        function currentSlide(n) {
-            showSlides(slideIndex = n);
-        }
-
-        function showSlides(n) {
-            let i;
-            let slides = $(".mySlides");
-            console.log(slides)
-            let dots = document.getElementsByClassName("demo");
-            let captionText = document.getElementById("caption");
-            if (n > slides.length) {slideIndex = 1}
-            if (n < 1) {slideIndex = slides.length}
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            for (i = 0; i < dots.length; i++) {
-                dots[i].className = dots[i].className.replace(" active", "");
-            }
-            slides[slideIndex-1].style.display = "block";
-            dots[slideIndex-1].className += " active";
-            captionText.innerHTML = dots[slideIndex-1].alt;
-        }
-    </script>
-
 </div>
+{% endfor %}
+
+{% if galleries is empty %}
+<h1>No galleries found</h1>
 {% endif %}
+
+<script>
+    // Object to keep track of the current slide index for each gallery
+    var slideIndex = {};
+
+    // Function to initialize the slide index for all galleries
+    function initGalleries() {
+        $('.gallery_container').each(function() {
+            var id = this.id.split('_')[1];
+            slideIndex[id] = 1;
+            showSlides(1, id); // Show the first slide for each gallery
+        });
+    }
+
+    // Function to increment/decrement the current slide index and display the slide
+    function plusSlides(n, galleryId) {
+        showSlides(slideIndex[galleryId] += n, galleryId);
+    }
+
+    // Function to display the current slide based on the thumbnail clicked
+    function currentSlide(n, galleryId) {
+        showSlides(slideIndex[galleryId] = n, galleryId);
+    }
+
+    // Main function to display slides
+    function showSlides(n, galleryId) {
+        var i;
+        var gallery = $("#gallery_" + galleryId);
+        var slides = gallery.find(".mySlides_" + galleryId);
+        var dots = gallery.find(".demo_" + galleryId);
+        var captionText = gallery.find("#caption_" + galleryId);
+
+        if (n > slides.length) { slideIndex[galleryId] = 1 }
+        if (n < 1) { slideIndex[galleryId] = slides.length }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex[galleryId]-1].style.display = "block";  
+        dots[slideIndex[galleryId]-1].className += " active";
+        captionText.html(dots[slideIndex[galleryId]-1].alt);
+    }
+
+    // Initialize galleries when the document is ready
+    $(document).ready(function() {
+        initGalleries();
+    });
+</script>
