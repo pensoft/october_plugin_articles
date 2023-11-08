@@ -44,66 +44,53 @@
         </div>
     </div>
 
-<script>
-    // Object to keep track of the current slide index for each gallery
-    var slideIndex = {};
-
-    // Function to initialize the slide index for all galleries
-    function initGalleries() {
-        $('.gallery_container').each(function() {
-            var id = this.id.split('_')[1];
-            slideIndex[id] = 1;
-            showSlides(1, id); // Show the first slide for each gallery
-        });
-    }
-
-    // Function to increment/decrement the current slide index and display the slide
-    function plusSlides(n, galleryId) {
-        showSlides(slideIndex[galleryId] += n, galleryId);
-    }
-
-    // Function to display the current slide based on the thumbnail clicked
-    function currentSlide(n, galleryId) {
-        showSlides(slideIndex[galleryId] = n, galleryId);
-    }
-
-    // Main function to display slides
-    function showSlides(n, galleryId) {
-        var i;
-        var gallery = $("#gallery_" + galleryId);
-        var slides = gallery.find(".mySlides_" + galleryId);
-        var dots = gallery.find(".demo_" + galleryId);
-        var captionText = gallery.find("#caption_" + galleryId);
-
-        if (n > slides.length) { slideIndex[galleryId] = 1 }
-        if (n < 1) { slideIndex[galleryId] = slides.length }
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
+    <script>
+        // Object to keep track of the current slide index for each gallery
+        var slideIndex = {};
+    
+        // Function to initialize the slide index for all galleries
+        function initGalleries() {
+            $('.gallery_container').each(function() {
+                var id = this.id.split('_')[1];
+                slideIndex[id] = 1;
+                showSlides(1, id); // Show the first slide for each gallery
+            });
         }
-
-        function currentSlide(n) {
-            showSlides(slideIndex = n);
+    
+        // Function to increment/decrement the current slide index and display the slide
+        function plusSlides(n, galleryId) {
+            showSlides(slideIndex[galleryId] += n, galleryId);
         }
-
-        function showSlides(n) {
-            let i;
-            let slides = $(".mySlides");
-            console.log(slides)
-            let dots = document.getElementsByClassName("demo");
-            let captionText = document.getElementById("caption");
-            if (n > slides.length) {slideIndex = 1}
-            if (n < 1) {slideIndex = slides.length}
+    
+        // Function to display the current slide based on the thumbnail clicked
+        function currentSlide(n, galleryId) {
+            showSlides(slideIndex[galleryId] = n, galleryId);
+        }
+    
+        // Main function to display slides
+        function showSlides(n, galleryId) {
+            var i;
+            var gallery = $("#gallery_" + galleryId);
+            var slides = gallery.find(".mySlides_" + galleryId);
+            var dots = gallery.find(".demo_" + galleryId);
+            var captionText = gallery.find("#caption_" + galleryId);
+    
+            if (n > slides.length) { slideIndex[galleryId] = 1 }
+            if (n < 1) { slideIndex[galleryId] = slides.length }
             for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
+                slides[i].style.display = "none";  
             }
             for (i = 0; i < dots.length; i++) {
                 dots[i].className = dots[i].className.replace(" active", "");
             }
-            slides[slideIndex-1].style.display = "block";
-            dots[slideIndex-1].className += " active";
-            captionText.innerHTML = dots[slideIndex-1].alt;
+            slides[slideIndex[galleryId]-1].style.display = "block";  
+            dots[slideIndex[galleryId]-1].className += " active";
+            captionText.html(dots[slideIndex[galleryId]-1].alt);
         }
+    
+        // Initialize galleries when the document is ready
+        $(document).ready(function() {
+            initGalleries();
+        });
     </script>
-
-</div>
-{% endif %}
+    

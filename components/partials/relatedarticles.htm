@@ -1,8 +1,11 @@
+
 <div class="col-xs-12 col-md-3 news-item item-{{slug}}">
 	<div class="row news_column">
 		{% if image %}
 		<a class="news-image col-xs-12 center-xs" href="{{url}}">
+
 			<img class="news-img-top" src="{{image.getThumb(__SELF__.property('thumb_width'), __SELF__.property('thumb_height'), {'mode': 'crop'})}}">
+
 		</a>
 		{% endif %}
 		<div class="news-container col-xs-12">
@@ -12,7 +15,9 @@
 			</div>
 			<div class="row">
 				<div class="col-xs-6">
-					<a href="#" class="btn btn-primary">Read article</a>
+
+					<a href="#" class="btn btn-primary">{{'Read article' |_}}</a>
+
 				</div>
 				<div class="col-xs-6">
 					{% if allow_share == 'yes' %}
