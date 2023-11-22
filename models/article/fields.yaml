@@ -74,14 +74,3 @@ fields:
         span: auto
         default: 1
         type: switch
-    gallery:
-        label: Gallery
-        mode: image
-        imageWidth: '270'
-        fileTypes: 'svg,png,jpg'
-        useCaption: true
-        thumbOptions:
-            mode: crop
-            extension: auto
-        span: right
-        type: fileupload

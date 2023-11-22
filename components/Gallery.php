@@ -166,16 +166,14 @@ class Gallery extends ComponentBase
      */
     protected function loadGalleries()
     {
-        $articleId = $this->param('id');
-        $article = Article::where('slug', $articleId)->first();
-
-        if ($article && class_exists(\Pensoft\Media\Models\Galleries::class)) {
-            return \Pensoft\Media\Models\Galleries::where('related', true)
-                ->where('article_id', $article->id)
-                ->orderBy('created_at', 'desc')
-                ->get();
+        $articleSlug = $this->param('id');
+        $article = Article::where('slug', $articleSlug)->first();
+    
+        if ($article) {
+            return $article->galleries;
         }
-
+    
         return [];
     }
+    
 }

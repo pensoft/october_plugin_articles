@@ -73,3 +73,8 @@
     - 'Galleries related to articles fix'
 1.0.33:
     - 'Galleries related to articles fix NEW'
+1.0.34:
+    - 'Created pivot table for galleries-articles'
+    - create_table_galleries_article_pivot.php
+1.0.35:
+    - 'Galleries logic updated many-to-many relation'

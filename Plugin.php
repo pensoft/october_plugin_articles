@@ -11,6 +11,13 @@ use System\Models\Revision as Revision;
 
 class Plugin extends PluginBase
 {
+    public function pluginDetails()
+    {
+        return [
+            'require' => ['Pensoft.Media']
+        ];
+    }
+
     public function registerComponents()
     {
         return [
