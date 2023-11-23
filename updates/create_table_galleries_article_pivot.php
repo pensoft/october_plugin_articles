@@ -8,7 +8,11 @@ class CreateTableGalleriesArticlePivot extends Migration
 {
     public function up()
     {
-        if (!Schema::hasTable('pensoft_media_galleries') || !Schema::hasTable('pensoft_articles_article')) {
+        // if (!Schema::hasTable('pensoft_media_galleries') || !Schema::hasTable('pensoft_articles_article')) {
+        //     return;
+        // }
+
+        if (Schema::hasTable('pensoft_gallery_article_pivot')) {
             return;
         }
 
