@@ -8,6 +8,18 @@ use System\Classes\PluginBase;
 
 class Plugin extends PluginBase
 {
+
+    public function pluginDetails()
+    {
+        return [
+            'name'        => 'Articles',
+            'icon'        => 'oc-icon-newspaper-o',
+            'author'      => 'Pensoft',
+            'require' => ['Pensoft.Media']
+        ];
+    }
+
+
     public function registerComponents()
     {
         return [

@@ -41,3 +41,44 @@
 1.0.19:
     - 'Updated table pensoft_articles_article'
     - builder_table_update_pensoft_articles_article_3.php
+1.0.20:
+    - 'Revision history'
+1.0.21:
+    - 'Related articles date fix'
+1.0.22:
+    - 'Created galleries table'
+    - builder_table_create_pensoft_articles_galleries.php
+1.0.23:
+    - 'Updated galleries table'
+    - builder_table_update_pensoft_articles_galleries.php
+1.0.24:
+    - 'Updated galleries table 2'
+    - builder_table_update_pensoft_articles_galleries_2.php
+1.0.25:
+    - 'gallery style fix'
+1.0.26:
+    - 'Dropped galleries table'
+    - builder_table_drop_pensoft_articles_galleries.php
+1.0.27:
+    - 'Modified the logic for attaching photogalleries to articles'
+1.0.28:
+    - 'Fixed photogalleries to articles, added title'
+1.0.29:
+    - 'Related articles'
+1.0.30:
+    - 'Related articles cover image'
+1.0.31:
+    - 'Translate'
+1.0.32:
+    - 'Galleries related to articles fix'
+1.0.33:
+    - 'Galleries related to articles fix NEW'
+1.0.34:
+    - 'Created pivot table for galleries-articles'
+1.0.35:
+    - 'Galleries logic updated many-to-many relation'
+1.0.36:
+    - "Removed return when pensoft_media_galleries doesnt exist condition"
+    - create_table_galleries_article_pivot.php
+1.0.37:
+    - 'Removed translated label from list; Added plugin name;'
