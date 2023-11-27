@@ -82,3 +82,5 @@
     - create_table_galleries_article_pivot.php
 1.0.37:
     - 'Removed translated label from list; Added plugin name;'
+1.0.38:
+    - 'Require Pensoft.Media'
