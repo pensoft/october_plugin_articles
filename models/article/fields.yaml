@@ -67,4 +67,10 @@ fields:
     published:
         label: 'Is published'
         span: auto
+        default: 1
         type: switch
+    meta_keywords:
+        label: 'Meta Keywords'
+        type: 'textarea'
+        size: 'medium'
+        tab: 'SEO'
