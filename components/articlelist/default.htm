@@ -15,7 +15,7 @@
             height=__SELF__.property('thumb_height')
         %}
 		{% if __SELF__.loggedIn %}
-		<a class="edit-link" href="/admin/pensoft/articles/article/update/{{item.id}}" target="_blank">Edit</a>
+		<a class="edit-link" href="/admin/pensoft/articles/article/update/{{item.id}}" target="_blank">{{'Edit' |_}}</a>
 		{% endif %}
     {% endfor %}
 

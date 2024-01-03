@@ -12,7 +12,7 @@ class BuilderTableUpdatePensoftArticlesArticle3 extends Migration
             $table->text('caption')->nullable();
         });
     }
-    
+
     public function down()
     {
         Schema::table('pensoft_articles_article', function($table)

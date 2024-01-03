@@ -16,6 +16,11 @@ fields:
         size: large
         span: left
         type: richeditor
+    caption:
+        label: Caption
+        size: large
+        span: auto
+        type: richeditor
     published_at:
         label: 'Published at'
         mode: datetime
