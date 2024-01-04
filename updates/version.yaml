@@ -87,3 +87,5 @@
 1.0.39:
     - 'Add meta keywords'
     - builder_table_update_pensoft_articles_article_4.php
+1.0.40:
+    - 'Related articles link fix'
