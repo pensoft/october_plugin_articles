@@ -89,3 +89,5 @@
     - builder_table_update_pensoft_articles_article_4.php
 1.0.40:
     - 'Related articles link fix'
+1.0.41:
+    - 'templete 6 addded for highlights'

@@ -1,0 +1,27 @@
+<div class="col-xs-12 col-md-3 news-item item-{{slug}}">
+    <div class="row news_column">
+        <div class="col-xs-12 text-published">{{ published_at|date('d.m.Y') }}</div>
+        {% if image %}
+        <div class="col-xs-12 news-image center-xs">
+			<img class="news-img-top" src="{{image.getThumb(width, height, {'mode': 'crop'})}}">
+        </div>
+        {% else %}
+        <div class="col-xs-12 news-image center-xs">
+			<img class="news-img-top" src="{{'pensoft/No_Image_Available.jpg'|media }}" style="height: {{height}}px; width: {{width}}px;">
+		</div>
+        {% endif %}
+        <div class="col-xs-12 news-container">
+            <div class="row">
+                <div class="col-xs-12 news-title">
+                    {{ title|length > 150 ? title|slice(0, 150) ~ '...' : title  }}
+                </div>
+                <div class="col-xs-12 news-content">
+                    {{ content|raw|length > 150 ? content|slice(0, 150) ~ '...' : content }}
+                </div>
+                <div class="col-xs-12 news-read-more">
+                    <a href="{{url}}" class="btn btn-primary">{{'Read article' |_}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
