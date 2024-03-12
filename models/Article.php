@@ -32,6 +32,28 @@ class Article extends Model
         'cover' => 'System\Models\File'
     ];
 
+    // Add  below relationship with Revision model
+    public $morphMany = [
+        'revision_history' => ['System\Models\Revision', 'name' => 'revisionable']
+    ];
+
+    public $belongsToMany = [
+    'galleries' => [
+        'Pensoft\Media\Models\Galleries',
+        'table' => 'pensoft_gallery_article_pivot',
+        'key' => 'article_id',
+        'otherKey' => 'gallery_id',
+        'order' => 'created_at desc'
+    ],
+    'categories' => [
+        'Pensoft\Articles\Models\Category',
+        'table' => 'pensoft_articles_article_category_pivot',
+        'key' => 'article_id',
+        'otherKey' => 'category_id',
+        // 'order' => 'sort_order'
+    ]
+    ];
+
     public function scopeNews($query)
     {
         return $query->where('type', self::TYPE_NEWS);
@@ -45,6 +67,13 @@ class Article extends Model
     public function scopeDescPublished($query)
     {
         return $query->orderBy('published_at', 'desc');
+    }
+
+    public function scopeByCategory($query, $categoryId)
+    {
+        return $query->whereHas('categories', function ($query) use ($categoryId) {
+            $query->where('id', $categoryId);
+        });
     }
 
     public function getPrettyAllowShareAttribute()
@@ -61,6 +90,7 @@ class Article extends Model
     {
         return $value;
     }
+
     public function getPrettyPublishedAtAttribute()
     {
         $date = new Carbon($this->published_at);
@@ -81,4 +111,50 @@ class Article extends Model
     {
         return trim(urlencode($this->title));
     }
+
+
+    // Add below function use for get current user details
+    public function diff(){
+        $history = $this->revision_history;
+    }
+
+    public function getRevisionableUser()
+    {
+        return BackendAuth::getUser()->id;
+    }
+
+
+        /**
+     * Add translation support to this model, if available.
+     *
+     * @return void
+     */
+    public static function boot()
+    {
+        Validator::extend(
+            'json',
+            function ($attribute, $value, $parameters) {
+                json_decode($value);
+
+                return json_last_error() == JSON_ERROR_NONE;
+            }
+        );
+
+        // Call default functionality (required)
+        parent::boot();
+
+        // Check the translate plugin is installed
+        if (!class_exists('RainLab\Translate\Behaviors\TranslatableModel')) {
+            return;
+        }
+
+        // Extend the constructor of the model
+        self::extend(
+            function ($model) {
+                // Implement the translatable behavior
+                $model->implement[] = 'RainLab.Translate.Behaviors.TranslatableModel';
+            }
+        );
+    }
+
 }

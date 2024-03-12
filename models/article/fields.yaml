@@ -74,3 +74,18 @@ fields:
         span: auto
         default: 1
         type: switch
+    categories:
+        label: Categories
+        comment: Attach to a category
+        type: relation
+        span: auto
+        select: name
+        nameFrom: name
+        descriptionFrom: description
+        pivotData:
+            table: pensoft_articles_article_category_pivot
+    meta_keywords:
+        label: 'Meta Keywords'
+        type: 'textarea'
+        size: 'medium'
+        tab: 'SEO'
