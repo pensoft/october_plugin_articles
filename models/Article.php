@@ -5,6 +5,8 @@ namespace Pensoft\Articles\Models;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Lang;
 use Model;
+use BackendAuth;
+use Validator;
 
 /**
  * Model
@@ -12,6 +14,34 @@ use Model;
 class Article extends Model
 {
     use \October\Rain\Database\Traits\Validation;
+
+    // For Revisionable namespace
+    use \October\Rain\Database\Traits\Revisionable;
+
+    public $timestamps = false;
+
+    // Add  for revisions limit
+    public $revisionableLimit = 200;
+
+    // Add for revisions on particular field
+    protected $revisionable = ["id","title","content"];
+
+
+    /**
+     * @var array Translatable fields
+     */
+    public $translatable = [
+        'title',
+        'cover',
+        'slug',
+        'content',
+        'caption',
+        'keywords',
+        'external',
+        'type',
+        'published'
+    ];
+
     const TYPE_NEWS = 1;
     const TYPE_PUBLICATIONS = 2;
     /**
@@ -38,20 +68,20 @@ class Article extends Model
     ];
 
     public $belongsToMany = [
-    'galleries' => [
-        'Pensoft\Media\Models\Galleries',
-        'table' => 'pensoft_gallery_article_pivot',
-        'key' => 'article_id',
-        'otherKey' => 'gallery_id',
-        'order' => 'created_at desc'
-    ],
-    'categories' => [
-        'Pensoft\Articles\Models\Category',
-        'table' => 'pensoft_articles_article_category_pivot',
-        'key' => 'article_id',
-        'otherKey' => 'category_id',
-        // 'order' => 'sort_order'
-    ]
+        'galleries' => [
+            'Pensoft\Media\Models\Galleries',
+            'table' => 'pensoft_gallery_article_pivot',
+            'key' => 'article_id',
+            'otherKey' => 'gallery_id',
+            'order' => 'created_at desc'
+        ],
+        'categories' => [
+            'Pensoft\Articles\Models\Category',
+            'table' => 'pensoft_articles_article_category_pivot',
+            'key' => 'article_id',
+            'otherKey' => 'category_id',
+            // 'order' => 'sort_order'
+        ]
     ];
 
     public function scopeNews($query)
