@@ -76,6 +76,7 @@ class ArticleHighlights extends ComponentBase
 			'template3' => 'Template 3',
 			'template4' => 'Template 4',
 			'template5' => 'Template 5',
+			'template6' => 'Template 6',
 		];
 	}
 
