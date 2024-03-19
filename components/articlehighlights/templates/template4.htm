@@ -19,7 +19,7 @@
 					<div class="news-container col-xs-12">
 						<div class="text-published">{{highlight.pretty_published_at}}</div>
 						<div class="news-title">
-							<h3 class="card-title"><a href="{{highlight.href}}">{{highlight.title}}</a></h3>
+							<h3 class="card-title"><a href="{{highlight.href}}">{{ highlight.title|length > title_max_length ? highlight.title|striptags|slice(0, title_max_length)|replace({"&nbsp;": " ", ".": ". "}) ~ '...' : highlight.title|striptags|replace({"&nbsp;": " ", ".": ". "})  }}</a></h3>
 						</div>
 					</div>
 				</div>

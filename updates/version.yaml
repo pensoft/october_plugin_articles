@@ -104,3 +104,5 @@
     - builder_table_create_pensoft_aticles_article_category_pivot.php
 1.0.46:
     - 'Added templete 6 for homepage highlights'
+1.0.47:
+    - 'Highlights max title length'

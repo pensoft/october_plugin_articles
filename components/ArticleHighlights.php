@@ -65,6 +65,11 @@ class ArticleHighlights extends ComponentBase
 				'description' => 'Cover image height in pixels',
 				'default' => 250,
 			],
+			'title_max_length' => [
+				'title' => 'Title max length',
+				'description' => 'Title max length',
+				'default' => 150,
+			],
         ];
     }
 
