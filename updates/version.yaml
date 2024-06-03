@@ -71,3 +71,41 @@
     - 'Translate'
 1.0.32:
     - 'Galleries related to articles fix'
+1.0.33:
+    - 'Galleries related to articles fix NEW'
+1.0.34:
+    - 'Created pivot table for galleries-articles'
+1.0.35:
+    - 'Galleries logic updated many-to-many relation'
+1.0.36:
+    - "Removed return when pensoft_media_galleries doesnt exist condition"
+    - create_table_galleries_article_pivot.php
+1.0.37:
+    - 'Removed translated label from list; Added plugin name;'
+1.0.38:
+    - 'Require Pensoft.Media'
+1.0.39:
+    - 'Add meta keywords'
+    - builder_table_update_pensoft_articles_article_4.php
+1.0.40:
+    - 'Related articles link fix'
+1.0.41:
+    - 'templete 6 addded for highlights'
+1.0.42:
+    - 'templete 6 addded for article list'
+1.0.43:
+    - 'Create category table'
+    - builder_table_create_pensoft_articles_category.php
+1.0.44:
+    - 'Update category table'
+    - builder_table_update_pensoft_articles_category.php
+1.0.45:
+    - 'Create category article pivot table'
+    - builder_table_create_pensoft_aticles_article_category_pivot.php
+1.0.46:
+    - 'Added templete 6 for homepage highlights'
+1.0.47:
+    - 'Highlights max title length'
+1.0.48:
+    - 'Add meta description and meta title field'
+    - builder_table_update_pensoft_articles_article_5.php

@@ -85,3 +85,31 @@ fields:
             extension: auto
         span: right
         type: fileupload
+    categories:
+        label: Categories
+        comment: Attach to a category
+        type: relation
+        span: auto
+        select: name
+        nameFrom: name
+        descriptionFrom: description
+        pivotData:
+            table: pensoft_articles_article_category_pivot
+    meta_title:
+        label: 'Meta Title'
+        type: text
+        size: medium
+        tab: SEO
+        span: auto
+    meta_description:
+        label: 'Meta Description'
+        type: textarea
+        size: medium
+        tab: SEO
+        span: auto
+    meta_keywords:
+        label: 'Meta Keywords'
+        type: textarea
+        size: medium
+        tab: SEO
+        span: auto
