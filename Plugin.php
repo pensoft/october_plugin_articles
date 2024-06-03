@@ -11,6 +11,19 @@ use System\Models\Revision as Revision;
 
 class Plugin extends PluginBase
 {
+
+    public $require = ['Pensoft.Media'];
+
+    public function pluginDetails()
+    {
+        return [
+            'name'        => 'Articles',
+            'icon'        => 'oc-icon-newspaper-o',
+            'author'      => 'Pensoft'
+        ];
+    }
+
+
     public function registerComponents()
     {
         return [

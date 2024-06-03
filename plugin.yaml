@@ -9,3 +9,12 @@ navigation:
         label: Articles
         url: pensoft/articles/article
         icon: icon-newspaper-o
+        sideMenu:
+            side-menu-media-articles:
+                label: Articles
+                url: pensoft/articles/article
+                icon: icon-newspaper-o
+            side-menu-media-categories:
+                label: Categories
+                url: pensoft/articles/categories
+                icon: icon-list

@@ -10,9 +10,9 @@
                 <div class="row news_column">
                     {% if highlight.href %}
                     <a class="news-image col-xs-12 center-xs" href="{{highlight.href}}">
-                        {% endif %}
+                    {% endif %}
                         <img class="news-img-top" src="{{ highlight.cover|crop_image|resize(width, height, {'mode': 'crop'}) }}">
-                        {% if highlight.href %}
+                    {% if highlight.href %}
                     </a>
                     {%endif %}
                     {% if highlight.content or highlight.title %}
@@ -28,6 +28,8 @@
                     {% endif %}
 
                     {% if highlight.href %}
+                    <a class="col-xs-12 read_more" href="{{highlight.href}}">
+                        Read more
                     </a>
                     {%endif %}
 

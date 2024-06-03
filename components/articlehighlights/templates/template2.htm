@@ -19,7 +19,7 @@
 						{% if highlight.content or highlight.title %}
 						<div class="card-body">
 							{% if highlight.title %}
-							<h3 class="card-title">{{highlight.title}}</h3>
+							<h3 class="card-title">{{ highlight.title|length > title_max_length ? highlight.title|striptags|slice(0, title_max_length)|replace({"&nbsp;": " ", ".": ". "}) ~ '...' : highlight.title|striptags|replace({"&nbsp;": " ", ".": ". "})  }}</h3>
 							{% endif %}
 						</div>
 						{% endif %}

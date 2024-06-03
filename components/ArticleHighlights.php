@@ -65,6 +65,11 @@ class ArticleHighlights extends ComponentBase
 				'description' => 'Cover image height in pixels',
 				'default' => 250,
 			],
+			'title_max_length' => [
+				'title' => 'Title max length',
+				'description' => 'Title max length',
+				'default' => 150,
+			],
         ];
     }
 
@@ -76,6 +81,7 @@ class ArticleHighlights extends ComponentBase
 			'template3' => 'Template 3',
 			'template4' => 'Template 4',
 			'template5' => 'Template 5',
+			'template6' => 'Template 6',
 		];
 	}
 

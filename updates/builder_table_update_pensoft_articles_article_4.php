@@ -3,21 +3,21 @@
 use Schema;
 use October\Rain\Database\Updates\Migration;
 
-class BuilderTableUpdatePensoftArticlesArticle3 extends Migration
+class BuilderTableUpdatePensoftArticlesArticle4 extends Migration
 {
     public function up()
     {
         Schema::table('pensoft_articles_article', function($table)
         {
-            $table->text('caption')->nullable();
+            $table->text('meta_keywords')->nullable();
         });
     }
-
+    
     public function down()
     {
         Schema::table('pensoft_articles_article', function($table)
         {
-            $table->dropColumn('caption');
+            $table->dropColumn('meta_keywords');
         });
     }
 }

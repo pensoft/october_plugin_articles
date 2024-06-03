@@ -6,6 +6,7 @@ use Backend\Facades\BackendAuth;
 use \Cms\Classes\ComponentBase;
 use Illuminate\Support\Facades\Lang;
 use Pensoft\Articles\Models\Article;
+use Pensoft\Articles\Models\Category;
 
 class ArticleList extends ComponentBase
 {
@@ -99,6 +100,11 @@ class ArticleList extends ComponentBase
         return $this->pageUrl($page_id, ['id' => $item->slug]);
     }
 
+    public function getCategories()
+    {
+        return Category::orderBy('sort_order')->get();
+    }
+
     public function getArticles()
     {
         $news = Article::news()->where('published_at', '<=', 'now()')->where('published', 'true')->orderBy('published_at', 'DESC');
@@ -108,4 +114,20 @@ class ArticleList extends ComponentBase
         }
         return $news->get();
     }
+
+    public function getArticlesByCategory($category)
+    {
+        $news = Article::news()->where('published_at', '<=', now())
+                    ->where('published', true)
+                    ->byCategory($category)
+                    ->orderBy('published_at', 'DESC');
+        
+                    
+        if ($this->property('maxItems') > 0) 
+        {
+            return $news->paginate($this->property('maxItems'), ['*'], 'p');
+        }
+        return $news->get();
+    }
+
 }

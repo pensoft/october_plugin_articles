@@ -1,34 +1,33 @@
 {% for gallery in galleries %}
-<div class="gallery-wrapper">
+<div class="gallery-wrapper article-gallery">
     <div class="row justify-content-center gallery-item">
         <div class="col-xs-12 text-center gallery-title">
             <h1>{{ gallery.name }}</h1>
-        </div>
-        <div class="col-xs-12 text-center pb-5">
-            {{ form_open({request: __SELF__ ~ '::onDownload'}) }}
-            <input type="hidden" name="gallery_id" value="{{ gallery.id }}">
-            <button type="submit" href="#" class="btn btn-primary">{{'Download all images' |_}}</button>
-            {{ form_close() }}        
         </div>
         <div class="col-xs-12 col-md-10">
             <div class="news_content_wrapper">
                 <div class="gallery_container" id="gallery_{{ gallery.id }}">
                     {% for image in gallery.images %}
                     <div class="mySlides mySlides_{{ gallery.id }}">
+                        <div class="image-title text-center"><p>{{ image.title }}</p></div>
                         <img class="img-fluid" src="{{ image.thumb(auto, 600, {'mode':'crop'}) }}" alt="{{ image.title | default('') }}">
+                        <div class="image-caption text-center"><p>{{ image.description }}</p></div>
                     </div>
                     {% endfor %}
-
+                    
                     <a class="prev" onclick="plusSlides(-1, {{ gallery.id }})"></a>
                     <a class="next" onclick="plusSlides(1, {{ gallery.id }})"></a>
 
-                    <div class="caption-container">
-                        <p id="caption_{{ gallery.id }}"></p>
+                    <div class="col-xs-12 text-center download-gallery">
+                        {{ form_open({request: __SELF__ ~ '::onDownload'}) }}
+                        <input type="hidden" name="gallery_id" value="{{ gallery.id }}">
+                        <button type="submit" href="#" class="btn btn-primary">{{'Download all images' |_}}</button>
+                        {{ form_close() }}
                     </div>
 
                     <div class="row">
                         {% for key, image in gallery.images %}
-                        <div class="column">
+                        <div class="col-md-2 col-xs-3 column">
                             <img class="demo cursor demo_{{ gallery.id }}" src="{{ image.thumb(155, 103, {'mode':'crop'}) }}" style="width:100%" onclick="currentSlide({{ key + 1 }}, {{ gallery.id }})" alt="{{ image.title | default('') }}">
                         </div>
                         {% endfor %}
@@ -39,10 +38,6 @@
     </div>
 </div>
 {% endfor %}
-
-{% if galleries is empty %}
-<h1>No galleries found</h1>
-{% endif %}
 
 <script>
     // Object to keep track of the current slide index for each gallery

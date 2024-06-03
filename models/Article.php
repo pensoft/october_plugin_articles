@@ -62,27 +62,27 @@ class Article extends Model
         'cover' => 'System\Models\File'
     ];
 
-    public $attachMany = [
-        'gallery' => 'System\Models\File'
-    ];
-
     // Add  below relationship with Revision model
     public $morphMany = [
         'revision_history' => ['System\Models\Revision', 'name' => 'revisionable']
     ];
 
-    /**
-     * Actions to perform before deleting an article.
-     * It checks if the Galleries model exists in the Media plugin.
-     * If so, it dissociates the galleries linked to this article.
-     */
-    public function beforeDelete()
-    {
-        if (class_exists('\Pensoft\Media\Models\Galleries')) {
-            \Pensoft\Media\Models\Galleries::where('article_id', $this->id)
-                ->update(['article_id' => null, 'related' => false]);
-        }
-    }
+    public $belongsToMany = [
+        'galleries' => [
+            'Pensoft\Media\Models\Galleries',
+            'table' => 'pensoft_gallery_article_pivot',
+            'key' => 'article_id',
+            'otherKey' => 'gallery_id',
+            'order' => 'created_at desc'
+        ],
+        'categories' => [
+            'Pensoft\Articles\Models\Category',
+            'table' => 'pensoft_articles_article_category_pivot',
+            'key' => 'article_id',
+            'otherKey' => 'category_id',
+            // 'order' => 'sort_order'
+        ]
+    ];
 
     public function scopeNews($query)
     {
@@ -99,6 +99,13 @@ class Article extends Model
         return $query->orderBy('published_at', 'desc');
     }
 
+    public function scopeByCategory($query, $categoryId)
+    {
+        return $query->whereHas('categories', function ($query) use ($categoryId) {
+            $query->where('id', $categoryId);
+        });
+    }
+
     public function getPrettyAllowShareAttribute()
     {
         return filter_var($this->allow_share, FILTER_VALIDATE_BOOLEAN) ? "yes" : "no";
@@ -113,6 +120,7 @@ class Article extends Model
     {
         return $value;
     }
+
     public function getPrettyPublishedAtAttribute()
     {
         $date = new Carbon($this->published_at);
@@ -139,6 +147,7 @@ class Article extends Model
     public function diff(){
         $history = $this->revision_history;
     }
+
     public function getRevisionableUser()
     {
         return BackendAuth::getUser()->id;
