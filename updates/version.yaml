@@ -109,3 +109,5 @@
 1.0.48:
     - 'Add meta description and meta title field'
     - builder_table_update_pensoft_articles_article_5.php
+1.0.49:
+    - 'Removed gallery field'
