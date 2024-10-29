@@ -153,6 +153,22 @@ class Article extends Model
         return BackendAuth::getUser()->id;
     }
 
+    public function beforeValidate()
+    {
+        if ($this->published) {
+            $this->rules['cover'] = 'required';
+            $this->rules['published_at'] = 'required|date';
+        } else {
+            unset($this->rules['cover'], $this->rules['published_at']);
+        }
+    }
+
+    public function beforeSave()
+    {
+        if (!$this->published && is_null($this->published_at)) {
+            $this->published_at = now();
+        }
+    }
 
         /**
      * Add translation support to this model, if available.
