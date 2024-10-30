@@ -113,3 +113,6 @@
     - 'Removed gallery field'
 1.0.50:
     - 'Skip mandatory fields if is_published is off'
+1.0.51:
+    - 'Add label field'
+    - builder_table_update_pensoft_articles_article_6.php
