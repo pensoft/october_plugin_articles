@@ -3,6 +3,7 @@
 namespace Pensoft\Articles\Components;
 
 use Backend\Facades\BackendAuth;
+use Carbon\Carbon;
 use \Cms\Classes\ComponentBase;
 use Illuminate\Support\Facades\Lang;
 use Pensoft\Articles\Models\Article;
@@ -121,13 +122,38 @@ class ArticleList extends ComponentBase
                     ->where('published', true)
                     ->byCategory($category)
                     ->orderBy('published_at', 'DESC');
-        
-                    
-        if ($this->property('maxItems') > 0) 
+
+
+        if ($this->property('maxItems') > 0)
         {
             return $news->paginate($this->property('maxItems'), ['*'], 'p');
         }
         return $news->get();
+    }
+
+    public function onSearchRecords() {
+        $sortTarget = post('sortTarget');
+        $sortType = post('sortType');
+        $this->page['records'] = $this->searchRecords($sortTarget, $sortType);
+        return ['#recordsContainer' => $this->renderPartial('articlelist')];
+    }
+
+    protected function searchRecords(
+        $sortTarget = 0,
+        $sortType = 0
+    ) {
+        $result = Article::news()->where('published_at', '<=', now())
+            ->where('published', true);
+        if($sortTarget){
+//            $result->where('category', "{$sortTarget}");
+            $result->byCategory($sortTarget);
+        }
+        if($sortType){
+            $sortType = $sortType - 1;
+            $result->where('external', "{$sortType}");
+        }
+
+        return $result->orderBy('published_at', 'DESC')->get();
     }
 
 }

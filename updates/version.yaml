@@ -116,3 +116,5 @@
 1.0.51:
     - 'Add label field'
     - builder_table_update_pensoft_articles_article_6.php
+1.0.52:
+    - 'Add selectize filter'
