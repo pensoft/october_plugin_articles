@@ -118,3 +118,5 @@
     - builder_table_update_pensoft_articles_article_6.php
 1.0.52:
     - 'Add selectize filter'
+1.0.53:
+    - 'Permissions'

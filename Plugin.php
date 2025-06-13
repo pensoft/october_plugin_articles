@@ -49,4 +49,41 @@ class Plugin extends PluginBase
         });
     }
 
+    public function registerPermissions()
+    {
+        return [
+            'pensoft.articles.access' => [
+                'tab' => 'Articles',
+                'label' => 'Manage articles/news'
+            ],
+        ];
+    }
+
+    public function registerNavigation()
+    {
+        return [
+            'articles' => [
+                'label'       => 'Articles',
+                'url'         => \Backend::url('pensoft/articles/article'),
+                'icon'        => 'icon-newspaper-o',
+                'permissions' => ['pensoft.articles.*'],
+                'sideMenu' => [
+                    'side-menu-media-articles' => [
+                        'label'       => 'Articles',
+                        'url'         => \Backend::url('pensoft/articles/article'),
+                        'icon'        => 'icon-newspaper-o',
+                        'permissions' => ['pensoft.articles.*'],
+                    ],
+                    'side-menu-item2' => [
+                        'label'       => 'Categories',
+                        'url'         => \Backend::url('pensoft/articles/categories'),
+                        'icon'        => 'icon-list',
+                        'permissions' => ['pensoft.articles.*'],
+                    ],
+
+                ]
+            ],
+        ];
+    }
+
 }
