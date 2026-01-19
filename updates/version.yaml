@@ -120,3 +120,5 @@
     - 'Add selectize filter'
 1.0.53:
     - 'Permissions'
+1.0.54:
+    - 'Order related articles'
