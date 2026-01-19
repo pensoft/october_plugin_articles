@@ -71,11 +71,6 @@ class ArticleList extends ComponentBase
 				'description' => 'Message to be displeyed when no listems are added',
 				'default' => 'No records found',
 			],
-			'records_per_page' => [
-				'title' => 'Records per page',
-				'description' => '',
-				'default' => '12',
-			],
         ];
     }
 
@@ -138,14 +133,14 @@ class ArticleList extends ComponentBase
 
     public function onSearchRecords() {
         $sortTarget = post('sortTarget');
-        $sortType = post('sortType');
-        $this->page['records'] = $this->searchRecords($sortTarget, $sortType);
+        $sortSource = post('sortSource');
+        $this->page['records'] = $this->searchRecords($sortSource, $sortTarget);
         return ['#recordsContainer' => $this->renderPartial('articlelist')];
     }
 
     protected function searchRecords(
-        $sortTarget = 0,
-        $sortType = 0
+        $sortSource = 0,
+        $sortTarget = 0
     ) {
         $result = Article::news()->where('published_at', '<=', now())
             ->where('published', true);
@@ -153,12 +148,18 @@ class ArticleList extends ComponentBase
 //            $result->where('category', "{$sortTarget}");
             $result->byCategory($sortTarget);
         }
-        if($sortType){
-            $sortType = $sortType - 1;
-            $result->where('external', "{$sortType}");
+        if($sortSource){
+            $sortSource = $sortSource - 1;
+            $result->where('external', "{$sortSource}");
         }
 
-        return $result->orderBy('published_at', 'DESC')->paginate($this->property('records_per_page'));
+        $result->orderBy('published_at', 'DESC');
+
+        if ($this->property('maxItems') > 0){
+            return $result->paginate($this->property('maxItems'));
+        }
+        return $result->get();
+
     }
 
 }

@@ -126,3 +126,5 @@
     - 'Order related articles'
 1.0.56:
     - 'Pagination property OnSearchRecords'
+1.0.57:
+    - 'Pagination property OnSearchRecords int'
