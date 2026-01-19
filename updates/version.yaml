@@ -121,4 +121,6 @@
 1.0.53:
     - 'Permissions'
 1.0.54:
+    - 'gitignore'
+1.0.55:
     - 'Order related articles'
