@@ -124,3 +124,5 @@
     - 'gitignore'
 1.0.55:
     - 'Order related articles'
+1.0.56:
+    - 'Pagination property OnSearchRecords'

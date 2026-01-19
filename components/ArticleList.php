@@ -71,6 +71,11 @@ class ArticleList extends ComponentBase
 				'description' => 'Message to be displeyed when no listems are added',
 				'default' => 'No records found',
 			],
+			'records_per_page' => [
+				'title' => 'Records per page',
+				'description' => '',
+				'default' => '12',
+			],
         ];
     }
 
@@ -153,7 +158,7 @@ class ArticleList extends ComponentBase
             $result->where('external', "{$sortType}");
         }
 
-        return $result->orderBy('published_at', 'DESC')->get();
+        return $result->orderBy('published_at', 'DESC')->paginate($this->property('records_per_page'));
     }
 
 }
