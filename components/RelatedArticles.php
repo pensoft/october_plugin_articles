@@ -1,0 +1,81 @@
+<?php namespace Pensoft\Articles\Components;
+
+use Cms\Classes\ComponentBase;
+use Pensoft\Articles\Models\Article;
+
+/**
+ * RelatedArticles Component
+ */
+class RelatedArticles extends ComponentBase
+{
+    public function onRun(): void
+    {
+        $this->page['relatedArticles'] = $this->related();
+    }
+
+    public function componentDetails(): array
+    {
+        return [
+            'name' => 'RelatedArticles Component',
+            'description' => 'No description provided yet...'
+        ];
+    }
+
+    public function defineProperties(): array
+    {
+        return [
+            'limit' => [
+                'title' => 'Limit',
+                'description' => 'Max items allowed',
+                'default' => 4,
+            ],
+            'thumb_width' => [
+                'title' => 'Cover image width',
+                'description' => 'Cover image width in pixels',
+                'default' => 250,
+            ],
+            'thumb_height' => [
+                'title' => 'Cover image height',
+                'description' => 'Cover image height in pixels',
+                'default' => 250,
+            ],
+        ];
+    }
+
+    public function getUrl($item, $page_id): string
+    {
+        return $this->pageUrl($page_id, ['id' => $item->slug]);
+    }
+
+    public function related(): array
+    {
+        if (!$this->param('id')) {
+            return [];
+        }
+
+        $article = Article::where('slug', $this->param('id'))->where('published', true)->first();
+
+        if (!$article || empty($article->keywords)) {
+            return [];
+        }
+
+        $tags = array_map('trim', explode(",", $article->keywords));
+
+        $relatedQuery = Article::where('slug', '!=', $this->param('id'))
+            ->where('published', true)
+            ->where(function ($query) use ($tags) {
+                foreach ($tags as $tag) {
+                    $query->orWhereRaw('LOWER(keywords) LIKE ?', ['%' . strtolower($tag) . '%']);
+                }
+            });
+
+        $relatedArticles = $relatedQuery
+            ->where('published_at', '<=', now())
+            ->orderBy('published_at', 'desc')
+            ->limit($this->property('limit'))
+            ->get();
+
+        return $relatedArticles;
+    }
+
+}

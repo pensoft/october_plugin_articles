@@ -1,0 +1,30 @@
+columns:
+    id:
+        label: ID
+        type: number
+    cover:
+        label: Image
+        type: partial
+        path: $/pensoft/articles/partials/_cover_column.htm
+    title:
+        label: Title
+        type: text
+    keywords:
+        label: Tags
+        type: text
+    published_at:
+        label: 'Published at'
+        type: date
+    created_at:
+        label: 'Created at'
+        type: timesince
+    updated_at:
+        label: 'Updated at'
+        type: timesince
+    is_highlight:
+        label: 'Is highlight'
+        type: switch
+    type:
+        label: Type
+        type: partial
+        path: $/pensoft/articles/partials/_type.htm

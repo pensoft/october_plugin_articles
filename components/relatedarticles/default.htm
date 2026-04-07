@@ -1,0 +1,13 @@
+<div class="newslist row">
+	{% for item in __SELF__.related() %}
+	{% partial __SELF__ ~ "::relatedarticles"
+	slug=item.slug
+	title=item.title
+	title_encoded=item.title_encoded
+	content=item.content_limit
+	url=__SELF__.getUrl(item, this.page.id)
+	image=item.cover
+	published_at=item.pretty_published_at
+	allow_share=item.allow_share %}
+	{% endfor %}
+</div>
