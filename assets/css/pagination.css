@@ -1,0 +1,23 @@
+
+.pagination {
+	list-style-type: none;
+	display: inline-block;
+	margin-top: 4rem;
+}
+
+.pagination li {
+	color: black;
+	float: left;
+	text-decoration: none;
+}
+
+.pagination li a, .pagination li span{
+	padding: 8px 16px;
+}
+
+.pagination li.active a {
+	background-color: #1b282e;
+	color: white;
+}
+
+.pagination li:hover:not(.active) a {background-color: #ddd;}
