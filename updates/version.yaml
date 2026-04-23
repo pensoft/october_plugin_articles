@@ -134,5 +134,7 @@
 4.0.2:
     - 'Add is_highlight boolean column to articles table'
     - add_is_highlight_to_articles.php
+4.0.3:
+    - 'composer installers 1 and 2'
 
 
