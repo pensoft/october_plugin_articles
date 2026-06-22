@@ -71,6 +71,7 @@ class RelatedArticles extends ComponentBase
 
         $relatedArticles = $relatedQuery
             ->where('published_at', '<=', now())
+            ->orderBy('published_at', 'desc')
             ->limit($this->property('limit'))
             ->get();
 

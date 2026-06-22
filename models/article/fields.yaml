@@ -16,6 +16,10 @@ fields:
         size: large
         span: left
         type: richeditor
+    label:
+        label: 'Label'
+        span: auto
+        type: text
     caption:
         label: Caption
         size: large
