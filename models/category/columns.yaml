@@ -6,10 +6,14 @@ columns:
     id:
         label: ID
         searchable: true
-    name: 
+    name:
         label: Name
         type: text
         searchable: true
+    is_visible:
+        label: Visible
+        type: switch
+        searchable: false
     revisions:
         type: partial
         path: ~/plugins/pensoft/media/partials/_revision.htm

@@ -53,7 +53,9 @@ class Category extends Model
     /**
      * @var array Attributes to be cast to native types
      */
-    protected $casts = [];
+    protected $casts = [
+        'is_visible' => 'boolean',
+    ];
 
     /**
      * @var array jsonable attribute names that are json encoded and decoded from the database

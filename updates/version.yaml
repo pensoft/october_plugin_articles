@@ -111,3 +111,23 @@
     - builder_table_update_pensoft_articles_article_5.php
 1.0.49:
     - 'Removed gallery field'
+1.0.50:
+    - 'Skip mandatory fields if is_published is off'
+1.0.51:
+    - 'Add label field'
+    - builder_table_update_pensoft_articles_article_6.php
+1.0.52:
+    - 'Add selectize filter'
+1.0.53:
+    - 'Permissions'
+1.0.54:
+    - 'gitignore'
+1.0.55:
+    - 'Order related articles'
+1.0.56:
+    - 'Pagination property OnSearchRecords'
+1.0.57:
+    - 'Pagination property OnSearchRecords int'
+1.0.58:
+    - 'Add is_visible column to category table'
+    - builder_table_update_pensoft_articles_category_2.php
