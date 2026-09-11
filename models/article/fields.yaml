@@ -78,6 +78,12 @@ fields:
         span: auto
         default: 1
         type: switch
+    news_of_the_day:
+        label: 'News of the day'
+        comment: 'Feature this article on the homepage. Only one article can be the news of the day - turning this on clears it from any other article.'
+        span: auto
+        default: 0
+        type: switch
     categories:
         label: Categories
         comment: Attach to a category

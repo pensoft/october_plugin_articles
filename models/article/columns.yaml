@@ -24,6 +24,10 @@ columns:
     pretty_allow_share:
         label: 'Allow share'
         type: text
+    news_of_the_day:
+        label: 'News of the day'
+        type: switch
+        sortable: true
     type:
         label: Type
         type: partial

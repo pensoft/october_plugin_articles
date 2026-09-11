@@ -131,3 +131,6 @@
 1.0.58:
     - 'Add is_visible column to category table'
     - builder_table_update_pensoft_articles_category_2.php
+1.0.59:
+    - 'Add news of the day flag'
+    - builder_table_update_pensoft_articles_article_7.php

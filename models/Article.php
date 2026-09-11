@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Lang;
 use Model;
 use BackendAuth;
 use Validator;
+use Schema;
 
 /**
  * Model
@@ -41,6 +42,11 @@ class Article extends Model
         'type',
         'published'
     ];
+
+    /**
+     * @var bool|null cached result of the news_of_the_day column check
+     */
+    protected static $newsOfTheDayColumn = null;
 
     const TYPE_NEWS = 1;
     const TYPE_PUBLICATIONS = 2;
@@ -106,6 +112,29 @@ class Article extends Model
         });
     }
 
+    /**
+     * The theme and this plugin deploy independently, so the column may not
+     * exist yet when a new theme lands before the migration has been applied.
+     * Degrade to "nothing is featured" instead of throwing a 500.
+     */
+    public static function hasNewsOfTheDayColumn()
+    {
+        if (self::$newsOfTheDayColumn === null) {
+            self::$newsOfTheDayColumn = Schema::hasColumn('pensoft_articles_article', 'news_of_the_day');
+        }
+
+        return self::$newsOfTheDayColumn;
+    }
+
+    public function scopeNewsOfTheDay($query)
+    {
+        if (!self::hasNewsOfTheDayColumn()) {
+            return $query->whereRaw('1 = 0');
+        }
+
+        return $query->where('news_of_the_day', true);
+    }
+
     public function getPrettyAllowShareAttribute()
     {
         return filter_var($this->allow_share, FILTER_VALIDATE_BOOLEAN) ? "yes" : "no";
@@ -167,6 +196,16 @@ class Article extends Model
     {
         if (!$this->published && is_null($this->published_at)) {
             $this->published_at = now();
+        }
+
+        // Only one article at a time may be the news of the day.
+        // A query builder update() skips model events, so this cannot recurse.
+        if ($this->news_of_the_day && self::hasNewsOfTheDayColumn()) {
+            $query = self::where('news_of_the_day', true);
+            if ($this->exists) {
+                $query->where('id', '<>', $this->id);
+            }
+            $query->update(['news_of_the_day' => false]);
         }
     }
 
