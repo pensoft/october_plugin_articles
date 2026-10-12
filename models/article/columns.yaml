@@ -2,6 +2,7 @@ columns:
     id:
         label: ID
         type: number
+        searchable: true
     cover:
         label: Image
         type: partial
@@ -9,9 +10,16 @@ columns:
     title:
         label: Title
         type: text
+        searchable: true
     keywords:
         label: Tags
         type: text
+        searchable: true
+    content:
+        label: Content
+        type: text
+        searchable: true
+        invisible: true
     published_at:
         label: 'Published at'
         type: date
